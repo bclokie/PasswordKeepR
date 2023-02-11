@@ -1,4 +1,6 @@
-// Using this code from StackOverflow to generate a password
+/*
+Using this code from StackOverflow to generate a password
+                                                        */
 
 function generatePassword(options) {
   const lowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
