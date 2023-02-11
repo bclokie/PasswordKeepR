@@ -1,6 +1,6 @@
 /*
 Using this code from StackOverflow to generate a password
-                                                        */
+*/
 
 function generatePassword(options) {
   const lowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
@@ -39,6 +39,13 @@ const passwordOptions = {
   symbols: true
 };
 
+const password = generatePassword(passwordOptions);
+console.log("Generated password: ", password);
+
+
+/*
+Authentication function
+*/
 
 function authenticate(username, password) {
   // A hardcoded set of valid credentials for demonstration purposes
