@@ -1,12 +1,33 @@
-// Using this function from Tiny App to modify into password generator
+// Using this code from StackOverflow to generate a password
+// Still not functional
 
-const generateRandomString = () => {
-  let string = "";
-  const cipher = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  let i = 0;
-  while (i < 6) {
-    string += cipher.charAt(Math.floor(Math.random() * cipher.length));
-    i++;
+function generatePassword(options) {
+  const lowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
+  const uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const numbers = "0123456789";
+  const symbols = "!@#$%^&*()_+-=[]{}|;':\"<>,.?/\\";
+
+  let password = "";
+  let characterSet = "";
+
+  if (options.lowercase) {
+    characterSet += lowercaseLetters;
   }
-  return string
-};
+  if (options.uppercase) {
+    characterSet += uppercaseLetters;
+  }
+  if (options.numbers) {
+    characterSet += numbers;
+  }
+  if (options.symbols) {
+    characterSet += symbols;
+  }
+
+  for (let i = 0; i < options.length; i++) {
+    password += characterSet.charAt(Math.floor(Math.random() * characterSet.length));
+  }
+
+  return password;
+}
+
+console.log(generatePassword(16))
