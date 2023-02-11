@@ -1,5 +1,4 @@
 // Using this code from StackOverflow to generate a password
-// Still not functional
 
 function generatePassword(options) {
   const lowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
@@ -30,4 +29,13 @@ function generatePassword(options) {
   return password;
 }
 
-console.log(generatePassword(16))
+const passwordOptions = {
+  length: 12,
+  lowercase: true,
+  uppercase: true,
+  numbers: true,
+  symbols: true
+};
+
+const password = generatePassword(passwordOptions);
+console.log("Generated password: ", password);
