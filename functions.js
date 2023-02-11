@@ -39,5 +39,21 @@ const passwordOptions = {
   symbols: true
 };
 
-const password = generatePassword(passwordOptions);
-console.log("Generated password: ", password);
+
+function authenticate(username, password) {
+  // A hardcoded set of valid credentials for demonstration purposes
+  const validCredentials = [
+    { username: "user1", password: "pass1" },
+    { username: "user2", password: "pass2" }
+  ];
+
+  // Check if the provided credentials match any in the set of valid credentials
+  for (let i = 0; i < validCredentials.length; i++) {
+    if (username === validCredentials[i].username && password === validCredentials[i].password) {
+      return true;
+    }
+  }
+
+  // If no match was found, return false
+  return false;
+}
