@@ -42,7 +42,7 @@ router.get("/", (req, res) => {
   // Create a new user
   router.post('/', (req, res) => {
     const user = req.body;
-    // user.password = bcrypt.hashSync(user.password, 12);
+    user.password = bcrypt.hashSync(user.password, 12);
     userQueries.addUser(user)
     .then(user => {
       if (!user) {
