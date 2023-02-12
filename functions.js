@@ -1,6 +1,6 @@
-/*
-GENERATE PASSWORD FUNCTION
-*/
+////////////////////////////////
+// GENERATE PASSWORD FUNCTION //
+////////////////////////////////
 
 function generatePassword(options) {
   const lowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
@@ -45,9 +45,9 @@ const password = generatePassword(passwordOptions);
 console.log("Generated password: ", password);
 
 
-/*
-AUTHENTICATION FUNCTION
-*/
+/////////////////////////////
+// AUTHENTICATION FUNCTION //
+/////////////////////////////
 
 function authenticate(username, password) {
   // A hardcoded set of valid credentials for demonstration purposes
@@ -68,9 +68,9 @@ function authenticate(username, password) {
 }
 
 
-/*
-COPY PASSWORD TO CLIPBOARD FUNCTION
-*/
+/////////////////////////////////////////
+// COPY PASSWORD TO CLIPBOARD FUNCTION //
+/////////////////////////////////////////
 
 /*
 CSS code to implement in HTML
@@ -112,9 +112,9 @@ copyButton.addEventListener("click", function() {
 });
 
 
-/*
-Dark Mode to Light Mode Button
-*/
+/////////////////////////////////
+// DARK MODE/LIGHT MODE BUTTON //
+/////////////////////////////////
 
 // Javascript Code
 
@@ -125,23 +125,47 @@ toggleButton.addEventListener("click", function() {
 });
 
 /* HTML Code
-
 <button id="toggle-mode-button">Toggle Mode</button>
-
 */
 
 /* CSS Code
-
 body {
   background-color: #fff;
   color: #000;
 }
-
 .dark-mode {
   background-color: #000;
   color: #fff;
 }
-
-// Colours can be changed as required, I just used white as base colour and black as dark mode colour as a template
-// Still need to potentially change text and other CSS colours on dark mode change
+      Colours can be changed as required, I just used white as base colour and black as dark mode colour as a template
+      Still need to potentially change text and other CSS colours on dark mode change
 */
+
+
+
+//////////////////////////
+// SHOW PASSWORD BUTTON //
+//////////////////////////
+
+/* HTML Code
+
+<input type="password" id="password-input">
+<button id="toggle-password-button">Show Password </button>
+</input>
+
+*/
+
+// Javascript Function
+
+const passwordInput = document.querySelector("#password-input");
+const toggleButton = document.querySelector("#toggle-password-button");
+
+toggleButton.addEventListener("click", function() {
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+    toggleButton.innerHTML = "Hide Password";
+  } else {
+    passwordInput.type = "password";
+    toggleButton.innerHTML = "Show Password";
+  }
+});
