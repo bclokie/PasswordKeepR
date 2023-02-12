@@ -1,5 +1,5 @@
 /*
-Using this code from StackOverflow to generate a password
+GENERATE PASSWORD FUNCTION
 */
 
 function generatePassword(options) {
@@ -31,6 +31,8 @@ function generatePassword(options) {
   return password;
 }
 
+// GENERATE PASSWORD TEST
+
 const passwordOptions = {
   length: 12,
   lowercase: true,
@@ -44,7 +46,7 @@ console.log("Generated password: ", password);
 
 
 /*
-Authentication function
+AUTHENTICATION FUNCTION
 */
 
 function authenticate(username, password) {
@@ -64,3 +66,48 @@ function authenticate(username, password) {
   // If no match was found, return false
   return false;
 }
+
+
+/*
+COPY PASSWORD TO CLIPBOARD FUNCTION
+*/
+
+// CSS code to implement in HTML
+
+<button id="copy-button">Copy to clipboard</button>
+
+// JS Code
+
+const copyButton = document.querySelector("#copy-button");
+
+copyButton.addEventListener("click", function() {
+  let textToCopy = window.getSelection().toString();
+
+  // Check if anything was selected
+  if (!textToCopy) {
+    console.error("No text selected");
+    return;
+  }
+
+  // Create a hidden textarea element
+  const textarea = document.createElement("textarea");
+  textarea.value = textToCopy;
+  textarea.style.position = "fixed";  // Avoid scrolling to bottom
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+
+  // Copy the text to the clipboard
+  try {
+    document.execCommand("copy");
+    console.log("Copied text: ", textToCopy);
+  } catch (err) {
+    console.error("Failed to copy text: ", err);
+  }
+
+  // Remove the textarea element
+  document.body.removeChild(textarea);
+});
+
+
+
