@@ -7,37 +7,52 @@
 
 const express = require('express');
 const router  = express.Router();
+const userQueries = require('../db/queries/users');
+const bcrypt = require("bcryptjs");
 
 // render registration page
 
 router.get("/", (req, res) => {
-  // if (req.session.user_id) {
-  //   res.redirect("/urls");
-  // }
-  // const storeUserId = req.session.user_id;
-  // const templateVars = {
-  //   user: users[storeUserId],
-  // };
-  res.render("register");
+  return res.render("register");
 });
 
 
 // registration form post
 
-router.post('/', (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password
-  // const hashedPassword = bcrypt.hashSync(password, 10);
-  // if (email === "" || password === "") {
-  //   res.status(400).send("Blank fields");
-  //   return;
-  // }
-  // if (helpers.getUserByEmail(email, users)) {
-  //   res.status(400).send("email registered already");
-  //   return;
-  // }
-  // res.render('register');
-  return res.redirect("/")
-});
+// router.post('/', (req, res) => {
+//   const email = req.body.email;
+//   const password = req.body.password
+//   const hashedPassword = bcrypt.hashSync(password, 10);
+//   if (email === "" || password === "") {
+//     res.status(400).send("Blank fields");
+//     return;
+//   }
+//   // if (helpers.getUserByEmail(email, users)) {
+//   //   res.status(400).send("email registered already");
+//   //   return;
+//   // }
+//   // userQueries.getUsers
+
+
+
+//   req.session.user_id = email; //temporary for testing
+//   return res.redirect("/")
+// });
+
+  // Create a new user
+  router.post('/', (req, res) => {
+    const user = req.body;
+    // user.password = bcrypt.hashSync(user.password, 12);
+    userQueries.addUser(user)
+    .then(user => {
+      if (!user) {
+        res.send({error: "error"});
+        return;
+      }
+      req.session.userId = user.id;
+      res.send("🤗");
+    })
+    .catch(e => res.send(e));
+  });
 
 module.exports = router;

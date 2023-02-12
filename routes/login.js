@@ -15,6 +15,30 @@ router.get('/', (req, res) => {
 
 // login form post
 
+router.post("/", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  // const user = helpers.getUserByEmail(email, users);
+  // if (!email || !password) {
+  //   return res.status(403).send("Email and password should not be blank");
+  // }
 
+  // if (!user) {
+  //   return res.status(403).send("User not found");
+  // }
+  // if (bcrypt.compareSync(password, user.password) === false) {
+  //   return res.status(403).send("Bad password");
+  // }
+
+  // req.session.user_id = user.id;
+
+  res.redirect("/");
+});
+
+// logout route
+// router.post("/", (req, res) => {
+//   req.session = null;
+//   res.redirect("/");
+// });
 
 module.exports = router;
