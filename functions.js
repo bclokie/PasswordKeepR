@@ -158,7 +158,7 @@ body {
 // Javascript Function
 
 const passwordInput = document.querySelector("#password-input");
-const toggleButton = document.querySelector("#toggle-password-button");
+const togglePasswordButton = document.querySelector("#toggle-password-button");
 
 toggleButton.addEventListener("click", function() {
   if (passwordInput.type === "password") {
