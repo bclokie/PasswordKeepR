@@ -72,11 +72,13 @@ function authenticate(username, password) {
 COPY PASSWORD TO CLIPBOARD FUNCTION
 */
 
-// CSS code to implement in HTML
+/*
+CSS code to implement in HTML
 
 <button id="copy-button">Copy to clipboard</button>
+*/
 
-// JS Code
+// JavaScript Code
 
 const copyButton = document.querySelector("#copy-button");
 
@@ -110,4 +112,36 @@ copyButton.addEventListener("click", function() {
 });
 
 
+/*
+Dark Mode to Light Mode Button
+*/
 
+// Javascript Code
+
+const toggleButton = document.querySelector("#toggle-mode-button");
+
+toggleButton.addEventListener("click", function() {
+  document.body.classList.toggle("dark-mode");
+});
+
+/* HTML Code
+
+<button id="toggle-mode-button">Toggle Mode</button>
+
+*/
+
+/* CSS Code
+
+body {
+  background-color: #fff;
+  color: #000;
+}
+
+.dark-mode {
+  background-color: #000;
+  color: #fff;
+}
+
+// Colours can be changed as required, I just used white as base colour and black as dark mode colour as a template
+// Still need to potentially change text and other CSS colours on dark mode change
+*/
