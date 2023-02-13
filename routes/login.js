@@ -1,5 +1,6 @@
 const express = require('express');
-const app = express();
-const loginRouter = express.Router();
+const router  = express.Router();
 
-module.exports = loginRouter;
+module.exports = router;
+
+

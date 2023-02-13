@@ -13,7 +13,29 @@
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
+  <!-- <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+  <script>
+    $(document).ready(function(){
 
+      $('.register-link').addCLass("active");
+
+      $('.login-link').click(function(){
+        $(this).addClass("active");
+        $('.register-link').removeCLass("active");
+          $(".login-link").show();
+          $(".register").hide();
+
+      });
+
+      $('.register-link').click(function(){
+        $(this).addClass("active");
+        $('.login-link').removeCLass("active");
+        $(".register").show();
+
+      });
+
+    });
+  </script> -->
 
   <!--font -->
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,22 +43,103 @@
 
 </head>
 
+
   <body>
-    <div class='hero'>
-      <nav>
-        <h2 class='logo'>GROUP <span>7</span></h2>
-        <ul>
-
-          <li><a href="#">PASSWORD GENERATOR</a></li>
-          <li><a href="#">PASSWORD LIST</a></li>
-        </ul>
-        <div>
-          <button type='submit'>REGISTER</button>
-          <button type='submit'>LOG IN</button>
-        </div>
-
+    <header>
+      <h2 class='logo'>Group<span> 7</span></h2>
+      <nav class='navigation'>
+          <a href="#">PASSWORD GENERATOR</a>
+          <a href="#">PASSWORD LIST</a>
+          <button class='btnLogin-popup'>LOGIN</button>
       </nav>
-    </div>
+    </header>
 
+      <div class='wrapper'>
+        <span class="icon-close"><ion-icon name="close"></ion-icon></span>
+
+        <div class='form-box login'>
+          <h2>LOGIN</h2>
+          <form action="#">
+            <div class='input-box'>
+              <span class='icon'>
+                <ion-icon name="mail-open"></ion-icon>
+              </span>
+              <input type="email" required>
+              <label>EMAIL</label>
+            </div>
+            <div class='input-box'>
+              <span class='icon'>
+                <ion-icon name="lock-closed"></ion-icon>
+              </span>
+              <input type="password" required>
+              <label>PASSWORD</label>
+            </div>
+            <div class='remember-forgot'>
+              <button type='"submmit' class='btn'>LOGIN</button>
+              <div class='login-register'>
+                <p>Don't have an account?<a href="#" class='register-link'>   <span> REGISTER</span></a></p>
+              </div>
+          </form>
+        </div>
+      </div>
+
+        <div class='form-box register'>
+          <h2>Registration</h2>
+          <form action="#">
+            <div class='input-box'>
+              <span class='icon'>
+                <ion-icon name="person"></ion-icon>
+              </span>
+              <input type="text" required>
+              <label>USERNAME</label>
+            </div>
+            <div class='input-box'>
+              <span class='icon'>
+                <ion-icon name="mail"></ion-icon>
+              </span>
+              <input type="email" required>
+              <label>EMAIL</label>
+            </div>
+            <div class='input-box'>
+              <span class='icon'>
+                <ion-icon name="lock-closed"></ion-icon>
+              </span>
+              <input type="password" required>
+              <label>PASSWORD</label>
+            </div>
+            <div class='remember-forgot'>
+              <button type='"submmit' class='btn'>REGISTER</button>
+              <div class='login-register'>
+                <p>Already have an account?<a href="#" class='login-link'>  <span>  LOGIN</span>
+                </a></p>
+              </div>
+          </form>
+        </div>
+      </div>
+
+
+    <script>
+        const wrapper = document.querySelector('.wrapper');
+        const loginLink = document.querySelector('.login-link');
+        const registerLink = document.querySelector('.register-link');
+        const btnPopup = document.querySelector('.btnLogin-popup');
+        const iconClose = document.querySelector('.icon-close');
+
+        registerLink.addEventListener('click', ()=> {
+          wrapper.classList.add('active');
+        });
+        loginLink.addEventListener('click', ()=> {
+          wrapper.classList.remove('active');
+        });
+        btnPopup.addEventListener('click', ()=> {
+          wrapper.classList.add('active-popup');
+        });
+        iconClose.addEventListener('click', ()=> {
+          wrapper.classList.remove('active-popup');
+        });
+    </script>
+      <!---ionicons-->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   </body>
 </html>
