@@ -7,13 +7,13 @@ CREATE TABLE passwords (
   site_url VARCHAR(255),
   site_username VARCHAR(255) NOT NUll,
   site_password SERIAL PRIMARY KEY NOT NULL,
-  user_id VARCHAR(150) NOT NULL,
+  user_id VARCHAR(150),
+  FOREIGN KEY(user_id) REFERENCES users(id),
   categories_id VARCHAR(150) NOT NULL,
-  CONSTRAINT fk_user_id FOREIGN KEY(user_id) REFERENCES "users"(id) ON DELETE CASCADE ON UPDATE CASCADE
-  CONSTRAINT fk_categories_id FOREIGN KEY(categories_id) REFERENCES "categories"(id) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY(categories_id) REFERENCES users(id)
 );
-/*
-the user table's id value is constrained to refer to the "passwords" table's "user_id" & "categories_id" as a foreign key.
-If this condition (ON DELETE CASCADE ON UPDATE CASCADE) is not specified, deletion or modification will not occur if constraint validation fails.
-*/
 
+INSER INTO passwords
+(id, site_name, site_url, site_username, site_password, user_id, categories_id)
+VALUES
+(1, google, www.google.com, cmgg919, 1234, cmg, )

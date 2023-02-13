@@ -42,7 +42,7 @@ const userRouter = require('./routes/users');
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 app.use('/', loginRouter);
-app.use('/login', loginRouter);
+// app.use('/login', loginRouter);
 // app.use('/logout', logoutRoute);
 // app.use('/password_gen', createPasswordRoutes);
 // app.use('/deletePassword', deletePasswordRoutes);
@@ -61,10 +61,6 @@ app.get('/', (req, res) => {
 });
 
 // GET route
-loginRouter.get("/login", (req, res) => {
-  const templateVars = { value: false };
-  res.render("login", templateVars);
-});
 
 
 app.listen(PORT, () => {
