@@ -6,6 +6,12 @@ const getUsers = () => {
   });
 };
 
+const getPasswords = () => {
+  return db.query("SELECT * FROM passwords;").then((data) => {
+    return data.rows;
+  });
+};
+
 /**
  * Add a new user to the database.
  * @param {{name: string, password: string, email: string}} user
@@ -85,4 +91,5 @@ module.exports = {
   getUserWithEmail,
   getUserById,
   addPassword,
+  getPasswords,
 };

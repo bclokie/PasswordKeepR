@@ -19,7 +19,7 @@ router.post("/", (req, res) => {
         return;
       }
       // req.session.userId = user.id;
-      return res.send("hi");
+      return res.render("manager");
     })
     .catch((e) => res.send(e));
 });
