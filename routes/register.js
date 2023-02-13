@@ -5,9 +5,9 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
-const express = require('express');
-const router  = express.Router();
-const userQueries = require('../db/queries/users');
+const express = require("express");
+const router = express.Router();
+const userQueries = require("../db/queries/users");
 const bcrypt = require("bcryptjs");
 
 // render registration page
@@ -15,7 +15,6 @@ const bcrypt = require("bcryptjs");
 router.get("/", (req, res) => {
   return res.render("register");
 });
-
 
 // registration form post
 
@@ -33,26 +32,25 @@ router.get("/", (req, res) => {
 //   // }
 //   // userQueries.getUsers
 
-
-
 //   req.session.user_id = email; //temporary for testing
 //   return res.redirect("/")
 // });
 
-  // Create a new user
-  router.post('/', (req, res) => {
-    const user = req.body;
-    user.password = bcrypt.hashSync(user.password, 12);
-    userQueries.addUser(user)
-    .then(user => {
+// Create a new user
+router.post("/", (req, res) => {
+  const user = req.body;
+  user.password = bcrypt.hashSync(user.password, 12);
+  userQueries
+    .addUser(user)
+    .then((user) => {
       if (!user) {
-        res.send({error: "error"});
+        res.send({ error: "error" });
         return;
       }
       req.session.userId = user.id;
-      res.send("🤗");
+      return res.send("🤗");
     })
-    .catch(e => res.send(e));
-  });
+    .catch((e) => res.send(e));
+});
 
 module.exports = router;
