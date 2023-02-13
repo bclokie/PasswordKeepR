@@ -6,20 +6,30 @@
  */
 
 const express = require('express');
-const userRouter  = express.Router();
+const router  = express.Router();
 const userQueries = require('../db/queries/users');
+const db = require('../db/connection');
 
-router.get('/login', (req, res) => {
+router.get('/', (req, res) => {
   userQueries.getUsers()
     .then(users => {
-      res.json({ users }); //SPA
-      res.render('users',{users}); //MPA
+      res.render('users',{users});  //MPA
+      res.json({ users });          //SPA
     })
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
+    // .catch(err => {
+    //   res
+    //     .status(500)
+    //     .json({ error: err.message });
+    // });
+});
+
+// get / users/:id
+router.get('/:id', (req, res, next) => {
+  const userID = req.params.id;
+  userQueries.getUserById(userID)
+    .then((user) => {
+      res.json(user);
     });
 });
 
-module.exports = userRouter;
+module.exports = router;

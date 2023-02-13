@@ -42,6 +42,9 @@ const getUserWithEmail = function (email) {
       console.log(err.message);
       return null;
     });
+  // .then((users) => {
+  //   res.json(users); //SPA
+  // });
 };
 
 const getUserById = (id) => {

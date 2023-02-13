@@ -1,6 +1,6 @@
 const express = require('express');
-const app = express();
-const deletePasswordRouter = express.Router();
+const router  = express.Router();
 
-module.exports = deletePasswordRouter;
+module.exports = router;
+
 
