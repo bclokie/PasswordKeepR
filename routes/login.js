@@ -31,6 +31,9 @@ router.post("/", (req, res) => {
         res.send({ error: "error not a user" });
         return;
       }
+      if (bcrypt.compareSync(password, user.password) === false) {
+        return res.status(403).send("Bad password");
+      }
       req.session.userId = user.id;
       return res.send({
         user: { name: user.username, email: user.email, id: user.id },
