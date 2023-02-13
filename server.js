@@ -50,11 +50,11 @@ const userRouter = require("./routes/users");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
-app.use("/users", usersRoutes);
+// app.use("/users", usersRoutes);
 app.use("/login", loginRoutes);
 app.use("/register", registerRoutes);
 app.use("/logout", logoutRoute);
-app.use("/", loginRouter);
+// app.use("/", loginRouter);
 // app.use('/login', loginRouter);
 // app.use('/logout', logoutRoute);
 // app.use('/password_gen', createPasswordRoutes);
@@ -73,10 +73,10 @@ app.get("/", (req, res) => {
 });
 
 // GET route
-loginRouter.get("/login", (req, res) => {
-  const templateVars = { value: false };
-  res.render("login", templateVars);
-});
+// loginRoutes.get("/login", (req, res) => {
+//   const templateVars = { value: false };
+//   res.render("login", templateVars);
+// });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
