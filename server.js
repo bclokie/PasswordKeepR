@@ -28,36 +28,44 @@ app.use(express.static('public'));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const indexRoute = require('./routes/index');
-const loginRoutes = require('./routes/login');
-const logoutRoutes = require('./routes/logout');
-const createPasswordRoutes = require("./routes/password_gen");
-const editPasswordRoute = require("./routes/editPassword")
-const deletePasswordRoute = require("./routes/deletePassword");
 
+//require routers
+const indexRouter = require('./routes/index');
+const loginRouter = require('./routes/login');
+const logoutRouter = require('./routes/logout');
+const createPasswordRouter = require("./routes/password_gen");
+const editPasswordRouter = require("./routes/editPassword")
+const deletePasswordRouter = require("./routes/deletePassword");
+const userRouter = require('./routes/users');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
-app.use('/', indexRoute);
-app.use('/login', loginRoute);
-app.use('/logout', logoutRoute);
-app.use('/password_gen', createPasswordRoutes);
-app.use('/deletePassword', deletePasswordRoutes);
-app.use('/editPassword', editPasswordRoutes);
+app.use('/', loginRouter);
+app.use('/login', loginRouter);
+// app.use('/logout', logoutRoute);
+// app.use('/password_gen', createPasswordRoutes);
+// app.use('/deletePassword', deletePasswordRoutes);
+// app.use('/editPassword', editPasswordRoutes);
 
-
-app.use('/api/widgets', widgetApiRoutes);
-app.use('/users', usersRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
+//pass the routers to the Express app as middlware
+
 app.get('/', (req, res) => {
   res.render('index');
 });
+
+// GET route
+loginRouter.get("/login", (req, res) => {
+  const templateVars = { value: false };
+  res.render("login", templateVars);
+});
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
