@@ -12,7 +12,7 @@ const bcrypt = require("bcryptjs");
 
 // login page rendering
 router.get("/", (req, res) => {
-  res.render("login");
+  res.render("login2");
 });
 
 // login form post
@@ -41,6 +41,13 @@ router.post("/", (req, res) => {
     })
     .catch((e) => res.send(e));
 });
+
+// logout route
+router.post("/", (req, res) => {
+  req.session = null;
+  res.redirect("/login");
+});
+
 //////////////
 //   if (!email || !password) {
 //     return res.status(403).send("Email and password should not be blank");
@@ -58,11 +65,6 @@ router.post("/", (req, res) => {
 //   return res.redirect("/");
 // });
 
-// logout route
-// router.post("/", (req, res) => {
-//   req.session = null;
-//   res.redirect("/");
-// });
 ///////////////////////////
 // /**
 //  * Check if a user exists with a given username and password
