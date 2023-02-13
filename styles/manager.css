@@ -1,0 +1,38 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  }
+
+  th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  }
+
+  th {
+  background-color: #ddd;
+  }
+
+  form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  }
+
+  input[type="text"] {
+  width: 200px;
+  height: 30px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  }
+
+  button[type="submit"] {
+  width: 120px;
+  height: 40px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  }

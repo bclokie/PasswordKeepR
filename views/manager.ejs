@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="/styles/manager.css">
     <title>PasswordKeepR</title>
   </head>
   <body>
     <h1>Password Manager</h1>
-    <form action="/manager" method="post">
+    <form action="/" method="post">
       <input type="text" name="siteName" placeholder="Site Name">
       <input type="text" name="siteURL" placeholder="Site URL">
       <input type="text" name="username" placeholder="Username">
       <input type="text" name="password" placeholder="Password">
       <button type="submit">Add Password</button>
     </form>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Site Name</th>
+        <th>Site URL</th>
+        <th>Username</th>
+        <th>Password</th>
+    </table>
   </body>
 </html>
