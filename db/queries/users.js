@@ -6,8 +6,6 @@ const getUsers = () => {
   });
 };
 
-// module.exports = { getUsers };
-
 /**
  * Add a new user to the database.
  * @param {{name: string, password: string, email: string}} user
@@ -46,4 +44,10 @@ const getUserWithEmail = function (email) {
     });
 };
 
-module.exports = { addUser, getUsers, getUserWithEmail };
+const getUserById = (id) => {
+  return db.query("SELECT * FROM db WHERE id = $1", [id]).then((response) => {
+    return response.rows[0];
+  });
+};
+
+module.exports = { addUser, getUsers, getUserWithEmail, getUserById };

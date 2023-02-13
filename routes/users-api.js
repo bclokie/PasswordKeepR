@@ -6,13 +6,14 @@
  */
 
 const express = require('express');
-const router  = express.Router();
+const userRouter  = express.Router();
 const userQueries = require('../db/queries/users');
 
-router.get('/', (req, res) => {
+router.get('/login', (req, res) => {
   userQueries.getUsers()
     .then(users => {
-      res.json({ users });
+      res.json({ users }); //SPA
+      res.render('users',{users}); //MPA
     })
     .catch(err => {
       res
@@ -21,4 +22,4 @@ router.get('/', (req, res) => {
     });
 });
 
-module.exports = router;
+module.exports = userRouter;
