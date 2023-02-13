@@ -13,7 +13,7 @@ CREATE TABLE passwords (
   FOREIGN KEY(categories_id) REFERENCES users(id)
 );
 
-INSER INTO passwords
+INSERT INTO passwords
 (id, site_name, site_url, site_username, site_password, user_id, categories_id)
 VALUES
 (1, google, www.google.com, cmgg919, 1234, cmg, )

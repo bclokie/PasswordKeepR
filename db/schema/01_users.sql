@@ -9,7 +9,7 @@ CREATE TABLE users (
 
 );
 
-ISERT INTO users
+INSERT INTO users
 (id, email, login_password, username)
 VALUES
 (1, 'cmgg919@gmail.com', 1234, cmgg)
