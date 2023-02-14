@@ -18,6 +18,10 @@ router.get("/", (req, res) => {
 // Create a new password
 router.post("/", (req, res) => {
   const passwordInfo = req.body;
+  // Check if any required fields are missing
+  if (!passwordInfo.siteName || !passwordInfo.siteURL || !passwordInfo.username || !passwordInfo.password) {
+    return res.status(400).send({ error: "Please fill in all required fields." });
+  }
   userQueries
     .addPassword(passwordInfo)
     .then(() => {
@@ -31,5 +35,3 @@ router.post("/", (req, res) => {
 
 
 module.exports = router;
-
-// Adding code to push to master
