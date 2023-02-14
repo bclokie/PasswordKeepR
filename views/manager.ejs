@@ -5,7 +5,7 @@
     <title>PasswordKeepR</title>
   </head>
   <body>
-    <h1>Password Manager</h1>
+    <h1>PasswordKeepR</h1>
     <form action="/manager" method="post">
       <label>🌍 Site Name: </label>
       <input type="text" name="siteName" placeholder="Enter Site Name">
@@ -29,6 +29,15 @@
         <th>Username</th>
         <th>Password</th>
       </tr>
+      <% for (let i = 0; i < passwords.length; i++) { %>
+        <tr>
+          <td><%= passwords[i].id %></td>
+          <td><%= passwords[i].site_name %></td>
+          <td><%= passwords[i].site_url %></td>
+          <td><%= passwords[i].site_username %></td>
+          <td><%= passwords[i].site_password %></td>
+        </tr>
+      <% } %>
     </table>
   </body>
 </html>

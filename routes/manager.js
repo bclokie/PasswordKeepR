@@ -4,7 +4,15 @@ const userQueries = require("../db/queries/users");
 
 // main page rendering
 router.get("/", (req, res) => {
-  res.render("manager");
+  userQueries
+    .getPasswords()
+    .then((passwords) => {
+      res.render("manager", { passwords });
+    })
+    .catch((e) => {
+      console.error(e);
+      res.send(e);
+    });
 });
 
 // Create a new password
