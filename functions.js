@@ -80,16 +80,16 @@ CSS code to implement in HTML
 
 // JavaScript Code
 
-const copyButton = document.querySelector("#copy-button");
+// const copyButton = document.querySelector("#copy-button");
 
-copyButton.addEventListener("click", function() {
-  let textToCopy = window.getSelection().toString();
+// copyButton.addEventListener("click", function() {
+//   let textToCopy = window.getSelection().toString();
 
-  // Check if anything was selected
-  if (!textToCopy) {
-    console.error("No text selected");
-    return;
-  }
+//   // Check if anything was selected
+//   if (!textToCopy) {
+//     console.error("No text selected");
+//     return;
+//   }
 
   // Create a hidden textarea element
   const textarea = document.createElement("textarea");
@@ -109,7 +109,7 @@ copyButton.addEventListener("click", function() {
 
   // Remove the textarea element
   document.body.removeChild(textarea);
-});
+// });
 
 
 /////////////////////////////////
@@ -169,3 +169,17 @@ toggleButton.addEventListener("click", function() {
     toggleButton.innerHTML = "Show Password";
   }
 });
+
+//get user by email
+const getUserByEmail = (email,users) => {
+  for(user in users) {
+    if(users[user].email === email) {
+      return users[user];
+    }
+  }
+  return false;
+};
+
+module.exports = { generatePassword, getUserByEmail,
+
+ }

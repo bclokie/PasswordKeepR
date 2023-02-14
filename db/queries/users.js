@@ -6,6 +6,12 @@ const getUsers = () => {
   });
 };
 
+const getPasswords = () => {
+  return db.query("SELECT * FROM passwords;").then((data) => {
+    return data.rows;
+  });
+};
+
 /**
  * Add a new user to the database.
  * @param {{name: string, password: string, email: string}} user
@@ -47,10 +53,43 @@ const getUserWithEmail = function (email) {
   // });
 };
 
+/**
+ * Add a new password to the database for certain user.
+ * @param {{site_name: string, site_url: string, site_username: string, site_password: string}} password
+ * @return {Promise<{}>} A promise to the user.
+ */
+const addPassword = function (password) {
+  return db
+    .query(
+      "INSERT INTO passwords (site_name, site_url, site_username, site_password) VALUES ($1, $2, $3, $4) RETURNING *",
+      [
+        password.siteName,
+        password.siteURL,
+        password.username,
+        password.password,
+      ]
+    )
+    .then((result) => {
+      console.log("##!", result.rows[0]);
+      return result.rows[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+      return err.message;
+    });
+};
+
 const getUserById = (id) => {
   return db.query("SELECT * FROM db WHERE id = $1", [id]).then((response) => {
     return response.rows[0];
   });
 };
 
-module.exports = { addUser, getUsers, getUserWithEmail, getUserById };
+module.exports = {
+  addUser,
+  getUsers,
+  getUserWithEmail,
+  getUserById,
+  addPassword,
+  getPasswords,
+};

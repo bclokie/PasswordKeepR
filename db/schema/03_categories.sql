@@ -10,3 +10,9 @@ CREATE TABLE categories (
   Entertainment VARCHAR(100) NOT NULL
 );
 
+-- mentor recommandation --
+-- CREATE TABLE users_organisations (
+--   id SERIAL PRIMARY KEY NOT NULL,
+--   user_id INTEGER REFERENCES users(id),
+--   organisations_id INTEGER REFERENCES organisations(id)
+-- );

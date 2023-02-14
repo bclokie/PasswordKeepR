@@ -12,3 +12,9 @@ CREATE TABLE organizations (
   Github VARCHAR(255) NOT NULL,
   Linkedin VARCHAR(255) NOT NULL
 );
+
+-- mentor recommandation --
+-- CREATE TABLE organisations (
+--   id SERIAL PRIMARY KEY NOT NULL,
+--   name VARCHAR(255) NOT NULL
+-- );

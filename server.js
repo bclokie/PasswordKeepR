@@ -10,7 +10,6 @@ const bcrypt = require("bcryptjs");
 
 const PORT = process.env.PORT || 8080;
 const app = express();
-
 app.set("view engine", "ejs");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -46,6 +45,8 @@ const createPasswordRouter = require("./routes/password_gen");
 const editPasswordRouter = require("./routes/editPassword");
 const deletePasswordRouter = require("./routes/deletePassword");
 const userRouter = require("./routes/users");
+const managerRoute = require("./routes/manager");
+const { addPassword } = require('./db/queries/users');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -54,6 +55,7 @@ const userRouter = require("./routes/users");
 app.use("/login", loginRoutes);
 app.use("/register", registerRoutes);
 app.use("/logout", logoutRoute);
+app.use("/manager", managerRoute);
 // app.use("/", loginRouter);
 // app.use('/login', loginRouter);
 // app.use('/logout', logoutRoute);
@@ -69,7 +71,7 @@ app.use("/logout", logoutRoute);
 //pass the routers to the Express app as middlware
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("/index");
 });
 
 // GET route
@@ -77,6 +79,15 @@ app.get("/", (req, res) => {
 //   const templateVars = { value: false };
 //   res.render("login", templateVars);
 // });
+app.get("/register", (req, res, next) => {
+  const {email , password} = req.body;
+  if(!email || !password){
+    return res.render("errorpage");
+  }
+  if(getUserByEmail(email)) {return res.status(400).send("Email already exists.")
+
+  }
+})
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

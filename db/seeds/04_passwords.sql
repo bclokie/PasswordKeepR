@@ -19,3 +19,7 @@ VALUES
 
 
 
+-- INSERT INTO passwords (site_name, site_url, site_password, user_id, organisations_id, )
+-- VALUES
+-- ('The Motley Fool', 'www.fool.ca', 'user1', 'q3dwer', 1, 1),
+

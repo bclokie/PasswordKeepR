@@ -15,8 +15,18 @@ router.get("/", (req, res) => {
   res.render("login");
 });
 
-// login form post
+//mingun
+//register page
+// router.get("/register", (req, res, next) => {
+//   const {email, password} = req.body;
+//   if(!email||password) {
+//     return res.status(400).send
+//   }
+// });
 
+
+
+// login form post
 router.post("/", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
