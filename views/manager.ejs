@@ -80,11 +80,12 @@
         <th>Username</th>
         <th>Password</th>
         <th>Copy?</th>
+        <th>Edit</th>
       </tr>
       <!-- This code shows the password table but gives us an error when we submit new password... -->
       <% for (let i = 0; i < passwords.length; i++) { %>
         <tr>
-          <td><%= passwords[i].id %></td>
+          <td id="<%= passwords[i].id %>"><%= passwords[i].id %></td>
           <td><%= passwords[i].site_name %></td>
           <td><%= passwords[i].site_url %></td>
           <td><%= passwords[i].site_username %></td>
@@ -96,6 +97,12 @@
           </td>
           <td>
             <button id="copy<%= i %>" onclick="copyPasswordToClipboard(this)">Copy!</button>
+          </td>
+          <td>
+            <form action="/edit" method="POST">
+              <input type="password" name="password">
+              <button type="submit" class="btn btn-primary">Edit!</button>
+            </form>
           </td>
         </tr>
       <% } %>
