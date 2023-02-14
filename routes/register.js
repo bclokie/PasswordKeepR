@@ -48,7 +48,7 @@ router.post("/", (req, res) => {
         return;
       }
       req.session.user_id = user.id;
-      return res.send("🤗");
+      return res.redirect("manager");
     })
     .catch((e) => res.send(e));
 });
