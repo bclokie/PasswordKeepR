@@ -1,4 +1,4 @@
--- DROP TABLE IF EXISTS organisations CASCADE;
+-- DROP TABLE IF EXISTS organizations CASCADE;
 
 -- CREATE TABLE Categories (
 --   id SERIAL PRIMARY KEY,
