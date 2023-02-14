@@ -7,7 +7,7 @@ CREATE TABLE passwords (
   site_url VARCHAR(255),
   site_username VARCHAR(255) NOT NUll,
   site_password VARCHAR(255) NOT NULL
-  user_id REFERENCES users(id) ON DELETE CASCADE,
+  -- user_id REFERENCES users(id) ON DELETE CASCADE,
   -- user_id REFERENCES users(id) ON DELETE CASCADE,
 );
 
