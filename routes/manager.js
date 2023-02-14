@@ -20,17 +20,15 @@ router.post("/", (req, res) => {
   const passwordInfo = req.body;
   userQueries
     .addPassword(passwordInfo)
-    .then((data) => {
-      console.log("## data", data);
-      if (!data) {
-        res.send({ error: "error" });
-        return;
-      }
-      // req.session.userId = user.id;
-      return res.render("manager");
+    .then(() => {
+      return userQueries.getPasswords();
+    })
+    .then((passwords) => {
+      res.render("manager", { passwords });
     })
     .catch((e) => res.send(e));
 });
+
 
 module.exports = router;
 
