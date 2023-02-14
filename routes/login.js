@@ -12,7 +12,10 @@ const bcrypt = require("bcryptjs");
 
 // login page rendering
 router.get("/", (req, res) => {
-  res.render("login");
+  if (req.session.user_id) {
+    res.redirect("manager");
+  }
+  res.render("login2");
 });
 
 // login form post
@@ -34,13 +37,18 @@ router.post("/", (req, res) => {
       if (bcrypt.compareSync(password, user.password) === false) {
         return res.status(403).send("Bad password");
       }
-      req.session.userId = user.id;
-      return res.send({
-        user: { name: user.username, email: user.email, id: user.id },
-      });
+      req.session.user_id = user.id;
+      return res.redirect("manager");
     })
     .catch((e) => res.send(e));
 });
+
+// logout route
+router.post("/", (req, res) => {
+  req.session = null;
+  res.redirect("/login");
+});
+
 //////////////
 //   if (!email || !password) {
 //     return res.status(403).send("Email and password should not be blank");
@@ -58,11 +66,6 @@ router.post("/", (req, res) => {
 //   return res.redirect("/");
 // });
 
-// logout route
-// router.post("/", (req, res) => {
-//   req.session = null;
-//   res.redirect("/");
-// });
 ///////////////////////////
 // /**
 //  * Check if a user exists with a given username and password
