@@ -1,11 +1,13 @@
--- DROP TABLE IF EXISTS organizations CASCADE;
 
--- CREATE TABLE Categories (
---   id SERIAL PRIMARY KEY,
---   Finance VARCHAR(255) NOT NULL,
---   Work VARCHAR(100) NOT NULL,
---   News VARCHAR(100) NOT NULL,
---   Misc/Other VARCHAR(100) NOT NULL,
---   Entertainment VARCHAR(100) NOT NULL,
--- );
+DROP TABLE IF EXISTS categories CASCADE;
+
+CREATE TABLE categories (
+  id SERIAL PRIMARY KEY NOT NULL,
+  Finance VARCHAR(100) NOT NULL,
+  Work VARCHAR(100) NOT NULL,
+  SocialMedia VARCHAR(100) NOT NULL,
+  News VARCHAR(100) NOT NULL,
+  Misc VARCHAR(100) NOT NULL,
+  Entertainment VARCHAR(100) NOT NULL
+);
 
