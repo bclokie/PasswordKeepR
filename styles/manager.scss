@@ -7,6 +7,10 @@ h1 {
   width: 120px;
   font-size: 18px;
   padding: 10px;
+  background-color: #ccc; // default background color
+  &.dark-mode {
+  background-color: #444; // background color in dark mode
+}
 }
 
 body {
