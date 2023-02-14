@@ -28,7 +28,7 @@
         <th>Site URL</th>
         <th>Username</th>
         <th>Password</th>
-        <th>Action</th>
+        <th>Copy?</th>
       </tr>
       <% for (let i = 0; i < passwords.length; i++) { %>
         <tr>
@@ -43,7 +43,7 @@
             </span>
           </td>
           <td>
-            <button id="copy<%= i %>" onclick="copyPasswordToClipboard(this)">Copy</button>
+            <button id="copy<%= i %>" onclick="copyPasswordToClipboard(this)">Copy!</button>
           </td>
         </tr>
       <% } %>
