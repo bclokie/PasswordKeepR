@@ -136,13 +136,17 @@
     <script>
       function generatePassword() {
         const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
+        let passwordLength = prompt("Please enter the desired length of your password (minimum 8 characters)");
+        while (passwordLength < 8) {
+          passwordLength = prompt("Password length must be at least 8 characters. Please enter a new password length.");
+        }
         let password = "";
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < passwordLength; i++) {
           password += chars.charAt(Math.floor(Math.random() * chars.length));
         }
         document.getElementById("password").value = password;
       }
-      </script>
+    </script>
   </body>
 </html>
 
