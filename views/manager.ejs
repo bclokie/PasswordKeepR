@@ -3,8 +3,28 @@
   <head>
     <link rel="stylesheet" href="/styles/manager.css">
     <title>PasswordKeepR</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        color: #333;
+      }
+      /* Add styles for dark mode */
+      .dark-mode body {
+        background-color: #333;
+        color: #f2f2f2;
+      }
+      .mode-switch {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+      }
+    </style>
   </head>
   <body>
+    <div class="mode-switch">
+      <button id="mode-switch">Dark Mode</button>
+    </div>
     <h1>PasswordKeepR</h1>
     <form action="/manager" method="post">
       <label>🌍 Site Name: </label>
@@ -68,6 +88,17 @@
           alert("Password copied to clipboard!");
         }
       )}
+    </script>
+    <script>
+      let modeSwitch = document.getElementById('mode-switch');
+      modeSwitch.addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+      if (document.body.classList.contains('dark-mode')) {
+        modeSwitch.innerText = 'Light Mode';
+      } else {
+        modeSwitch.innerText = 'Dark Mode';
+      }
+    });
     </script>
   </body>
 </html>
