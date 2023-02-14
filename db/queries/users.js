@@ -8,8 +8,21 @@ const getUsers = () => {
 
 const getPasswords = () => {
   return db.query("SELECT * FROM passwords;").then((data) => {
+    console.log(data.rows);
     return data.rows;
   });
+};
+
+const getUserPasswords = (userId) => {
+  return db
+    .query("Select * FROM passwords WHERE owner_id = $1;", [userId])
+    .then((result) => {
+      console.log("####", result.rows);
+      return result.rows;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
 };
 
 /**
@@ -61,8 +74,9 @@ const getUserWithEmail = function (email) {
 const addPassword = function (password) {
   return db
     .query(
-      "INSERT INTO passwords (site_name, site_url, site_username, site_password) VALUES ($1, $2, $3, $4) RETURNING *",
+      "INSERT INTO passwords (owner_id, site_name, site_url, site_username, site_password) VALUES ($1, $2, $3, $4, $5) RETURNING *",
       [
+        password.owner_id,
         password.siteName,
         password.siteURL,
         password.username,
@@ -92,4 +106,5 @@ module.exports = {
   getUserById,
   addPassword,
   getPasswords,
+  getUserPasswords,
 };

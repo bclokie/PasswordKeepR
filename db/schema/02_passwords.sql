@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS passwords CASCADE;
 
 CREATE TABLE passwords (
   id SERIAL PRIMARY KEY NOT NULL,
+  owner_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   site_name VARCHAR(255) NOT NULL,
   site_url VARCHAR(255),
   site_username VARCHAR(255) NOT NULL,
