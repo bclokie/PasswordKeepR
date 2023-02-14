@@ -41,16 +41,20 @@
       <button id="mode-switch">Dark Mode</button>
     </div>
     <section class ='nav-bar'>
-      <div>
-        <button id="register" onclick="window.location.href='/register';">Register</button>
+      <% if(!user_id) { %>
+        <div>
+      <button id="register" onclick="window.location.href='/register';">Register</button>
       </div>
       <div>
         <button id="login" onclick="window.location.href='/login';">Login</button>
       </div>
+      <% } else{ %>
         <div>
           <form method="POST" action="/logout"><button type="Submit">logout</button></form>
         </div>
-        </p>
+        <div>
+        </div>
+         <% } %>
     </section>
        <h1>PasswordKeepR</h1>
     <form action="/manager" method="post">
