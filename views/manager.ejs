@@ -7,10 +7,18 @@
   <body>
     <h1>Password Manager</h1>
     <form action="/manager" method="post">
-      <input type="text" name="siteName" placeholder="Site Name">
-      <input type="text" name="siteURL" placeholder="Site URL">
-      <input type="text" name="username" placeholder="Username">
-      <input type="text" name="password" placeholder="Password">
+      <label>🌍 Site Name: </label>
+      <input type="text" name="siteName" placeholder="Enter Site Name">
+      <br>
+      <label>🔗 Site URL: </label>
+      <input type="text" name="siteURL" placeholder="Enter Site URL">
+      <br>
+      <label>🙂 Username: </label>
+      <input type="text" name="username" placeholder="Enter Username">
+      <br>
+      <label>🔑 Password: </label>
+      <input type="text" name="password" placeholder="Enter Password">
+      <br>
       <button type="submit">Add Password</button>
     </form>
     <table>
@@ -21,9 +29,7 @@
         <th>Username</th>
         <th>Password</th>
       </tr>
-      <tr>
-
-      </tr>
     </table>
   </body>
 </html>
+
