@@ -57,21 +57,22 @@
          <% } %>
     </section>
        <h1>PasswordKeepR</h1>
-    <form action="/manager" method="post">
-      <label>🌍 Site Name: </label>
-      <input type="text" name="siteName" placeholder="Enter Site Name">
-      <br>
-      <label>🔗 Site URL: </label>
-      <input type="text" name="siteURL" placeholder="Enter Site URL">
-      <br>
-      <label>🙂 Username: </label>
-      <input type="text" name="username" placeholder="Enter Username">
-      <br>
-      <label>🔑 Password: </label>
-      <input type="text" name="password" placeholder="Enter Password">
-      <br>
-      <button type="submit">Add Password</button>
-    </form>
+       <form action="/manager" method="post">
+        <label>🌍 Site Name: </label>
+        <input type="text" name="siteName" placeholder="Enter Site Name">
+        <br>
+        <label>🔗 Site URL: </label>
+        <input type="text" name="siteURL" placeholder="Enter Site URL">
+        <br>
+        <label>🙂 Username: </label>
+        <input type="text" name="username" placeholder="Enter Username">
+        <br>
+        <label>🔑 Password: </label>
+        <input type="text" id="password" name="password" placeholder="Enter Password">
+        <button type="button" onclick="generatePassword()">Generate Password</button>
+        <br>
+        <button type="submit">Add Password</button>
+      </form>
     <table class="first-row">
       <tr>
         <th>ID</th>
@@ -131,6 +132,20 @@
         modeSwitch.innerText = 'Dark Mode';
       }
     });
+    </script>
+    <script>
+      function generatePassword() {
+        const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
+        let passwordLength = prompt("Please enter the desired length of your password (minimum 8 characters)");
+        while (passwordLength < 8) {
+          passwordLength = prompt("Password length must be at least 8 characters. Please enter a new password length.");
+        }
+        let password = "";
+        for (let i = 0; i < passwordLength; i++) {
+          password += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        document.getElementById("password").value = password;
+      }
     </script>
   </body>
 </html>
