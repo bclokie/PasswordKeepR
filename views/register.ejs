@@ -4,12 +4,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-  <!-- Bootstrap CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous" /> -->
-
-  <title>New URL - TinyApp Example</title>
+  <link rel="stylesheet" href="/styles/register.css">
+  <title>Registration Page</title>
 </head>
 
 <body>
@@ -17,6 +13,16 @@
   <main style="margin: lem;">
     <h3>Register</h3>
     <form class="form-inline" action="/register" method="POST">
+      <label for="organization">Organization:</label>
+      <select id="organization" name="organization">
+        <option value="lighthouseLabs" selected>Lighthouse Labs</option>
+        <option value="google">Google</option>
+        <option value="facebook">Facebook</option>
+        <option value="apple">Apple</option>
+        <option value="microsoft">Microsoft</option>
+        <option value="github">Github</option>
+        <option value="linkedIn">LinkedIn</option>
+      </select>
       <label for="username">Username:</label>
       <input type="text" name="username">
       <label for="email">Email:</label>
@@ -29,3 +35,4 @@
 </body>
 
 </html>
+

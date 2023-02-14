@@ -12,9 +12,9 @@ const bcrypt = require("bcryptjs");
 
 // login page rendering
 router.get("/", (req, res) => {
-  if (req.session.user_id) {
-    res.redirect("manager");
-  }
+  // if (req.session.user_id) {
+  //   res.redirect("manager");
+  // }
   res.render("login2");
 });
 
@@ -41,12 +41,6 @@ router.post("/", (req, res) => {
       return res.redirect("manager");
     })
     .catch((e) => res.send(e));
-});
-
-// logout route
-router.post("/", (req, res) => {
-  req.session = null;
-  res.redirect("/login");
 });
 
 //////////////

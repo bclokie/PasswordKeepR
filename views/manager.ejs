@@ -9,6 +9,7 @@
         background-color: #f2f2f2;
         color: #333;
       }
+
       /* Add styles for dark mode */
       .dark-mode body {
         background-color: #333;
@@ -17,7 +18,21 @@
       .mode-switch {
         position: absolute;
         top: 40px;
+        left: 40px;
+      }
+         .nav-bar {
+        position: absolute;
+        top: 40px;
         right: 40px;
+      }
+      #register {
+        margin: 1em;
+      }
+      #login {
+        margin: 1em;
+      }
+      #logout {
+        margin: 1em;
       }
     </style>
   </head>
@@ -25,7 +40,23 @@
     <div class="mode-switch">
       <button id="mode-switch">Dark Mode</button>
     </div>
-    <h1>PasswordKeepR</h1>
+    <section class ='nav-bar'>
+      <% if(!user_id) { %>
+        <div>
+      <button id="register" onclick="window.location.href='/register';">Register</button>
+      </div>
+      <div>
+        <button id="login" onclick="window.location.href='/login';">Login</button>
+      </div>
+      <% } else{ %>
+        <div>
+          <form method="POST" action="/logout"><button type="Submit">logout</button></form>
+        </div>
+        <div>
+        </div>
+         <% } %>
+    </section>
+       <h1>PasswordKeepR</h1>
     <form action="/manager" method="post">
       <label>🌍 Site Name: </label>
       <input type="text" name="siteName" placeholder="Enter Site Name">
@@ -41,7 +72,7 @@
       <br>
       <button type="submit">Add Password</button>
     </form>
-    <table>
+    <table class="first-row">
       <tr>
         <th>ID</th>
         <th>Site Name</th>

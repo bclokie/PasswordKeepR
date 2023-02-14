@@ -7,6 +7,7 @@ const express = require("express");
 const morgan = require("morgan");
 const cookieSession = require("cookie-session");
 const bcrypt = require("bcryptjs");
+const session = require("express-session");
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -34,6 +35,16 @@ app.use(
   })
 );
 
+app.set("trust proxy", 1); // trust first proxy
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true },
+  })
+);
+
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 
@@ -47,6 +58,11 @@ const editPasswordRouter = require("./routes/editPassword");
 const deletePasswordRouter = require("./routes/deletePassword");
 const userRouter = require("./routes/users");
 const managerRoute = require("./routes/manager");
+app.use(function (req, res, next) {
+  res.locals.user_id = req.session.user_id;
+  res.locals.username = req.session.username;
+  next();
+});
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own

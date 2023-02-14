@@ -48,7 +48,9 @@ router.post("/", (req, res) => {
         return;
       }
       req.session.user_id = user.id;
-      return res.send("🤗");
+      // req.session.username = username;
+      // res.locals.user_id = res.session.user_id;
+      return res.redirect("manager");
     })
     .catch((e) => res.send(e));
 });
