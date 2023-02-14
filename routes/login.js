@@ -12,6 +12,9 @@ const bcrypt = require("bcryptjs");
 
 // login page rendering
 router.get("/", (req, res) => {
+  if (req.session.user_id) {
+    res.redirect("manager");
+  }
   res.render("login2");
 });
 
@@ -34,10 +37,8 @@ router.post("/", (req, res) => {
       if (bcrypt.compareSync(password, user.password) === false) {
         return res.status(403).send("Bad password");
       }
-      req.session.userId = user.id;
-      return res.send({
-        user: { name: user.username, email: user.email, id: user.id },
-      });
+      req.session.user_id = user.id;
+      return res.redirect("manager");
     })
     .catch((e) => res.send(e));
 });
