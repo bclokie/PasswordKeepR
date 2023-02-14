@@ -28,6 +28,7 @@
         <th>Site URL</th>
         <th>Username</th>
         <th>Password</th>
+        <th>Action</th>
       </tr>
       <% for (let i = 0; i < passwords.length; i++) { %>
         <tr>
@@ -35,25 +36,38 @@
           <td><%= passwords[i].site_name %></td>
           <td><%= passwords[i].site_url %></td>
           <td><%= passwords[i].site_username %></td>
-          <td><button id="<%= i %>" onclick="togglePasswordVisibility(this)">Show Password</button>
+          <td>
+            <button id="<%= i %>" onclick="togglePasswordVisibility(this)">Show</button>
             <span id="password<%= i %>" style="display: none;">
               <%= passwords[i].site_password %>
-            </span></td>
+            </span>
+          </td>
+          <td>
+            <button id="copy<%= i %>" onclick="copyPasswordToClipboard(this)">Copy</button>
+          </td>
         </tr>
       <% } %>
     </table>
     <script>
       function togglePasswordVisibility(element) {
-        var passwordId = 'password' + element.id;
-        var passwordElement = document.getElementById(passwordId);
+        let passwordId = 'password' + element.id;
+        let passwordElement = document.getElementById(passwordId);
         if (passwordElement.style.display === 'none') {
           passwordElement.style.display = 'inline';
-          element.innerText = 'Hide Password';
+          element.innerText = 'Hide';
         } else {
-          passwordElement.style.display = 'none';
-          element.innerText = 'Show Password';
+          passwordElement.style.display = 'none'
+          element.innerText = 'Show';
         }
       }
+      function copyPasswordToClipboard(element) {
+        let passwordId = 'password' + element.id.slice(-1);
+        let passwordElement = document.getElementById(passwordId);
+        let password = passwordElement.innerText;
+        navigator.clipboard.writeText(password).then(function() {
+          alert("Password copied to clipboard!");
+        }
+      )}
     </script>
   </body>
 </html>
