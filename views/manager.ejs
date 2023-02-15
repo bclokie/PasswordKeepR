@@ -71,6 +71,10 @@
         <input type="text" id="password" name="password" placeholder="Enter Password">
         <button type="button" onclick="generatePassword()">Generate Password</button>
         <br>
+        <input type="checkbox" id="includeLowercase">Include Lower Case Letters<br>
+        <input type="checkbox" id="includeUppercase">Include Upper Case Letters<br>
+        <input type="checkbox" id="includeNumbers">Include Numbers<br>
+        <input type="checkbox" id="includeSymbols">Include Symbols<br>
         <button type="submit">Add Password</button>
       </form>
     <table class="first-row">
@@ -135,11 +139,20 @@
     </script>
     <script>
       function generatePassword() {
-        const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
-        let passwordLength = prompt("Please enter the desired length of your password (minimum 8 characters)");
-        while (passwordLength < 8) {
-          passwordLength = prompt("Password length must be at least 8 characters. Please enter a new password length.");
+        let chars = "";
+        if (document.getElementById("includeLowercase").checked) {
+          chars += "abcdefghijklmnopqrstuvwxyz";
         }
+        if (document.getElementById("includeUppercase").checked) {
+          chars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        }
+        if (document.getElementById("includeNumbers").checked) {
+          chars += "0123456789";
+        }
+        if (document.getElementById("includeSymbols").checked) {
+          chars += "!@#$%^&*()_+";
+        }
+        let passwordLength = prompt("How many characters would you like your password to contain?");
         let password = "";
         for (let i = 0; i < passwordLength; i++) {
           password += chars.charAt(Math.floor(Math.random() * chars.length));
