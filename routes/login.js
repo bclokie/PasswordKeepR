@@ -24,7 +24,7 @@ router.post("/", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   const user = userQueries.getUserWithEmail(email);
-  console.log(user);
+  // console.log(user);
   user
     .then((user) => {
       if (!email || !password) {
