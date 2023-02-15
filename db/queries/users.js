@@ -45,6 +45,21 @@ const addUser = function (user) {
     });
 };
 
+const addOrganization = function (organizationName, userID) {
+  return db
+    .query(
+      "INSERT INTO organizations (name, user_id) VALUES ($1, $2) RETURNING *",
+      [organizationName, userID]
+    )
+    .then((result) => {
+      console.log(result.rows[0]);
+      return result.rows[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
 const editPassword = function (password, passwordID) {
   return db
     .query(
@@ -123,4 +138,5 @@ module.exports = {
   getPasswords,
   getUserPasswords,
   editPassword,
+  addOrganization,
 };
