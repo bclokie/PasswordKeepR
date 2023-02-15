@@ -9,7 +9,6 @@
         background-color: #f2f2f2;
         color: #333;
       }
-
       /* Add styles for dark mode */
       .dark-mode body {
         background-color: #333;
@@ -171,7 +170,6 @@
         if (includeUppercase) chars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         if (includeNumbers) chars += "0123456789";
         if (includeSymbols) chars += "!@#$%^&*()_-+={}[]|\\:;\"'<>,.?/";
-
         let password = "";
         for (let i = 0; i < length; i++) {
           let randomIndex = Math.floor(Math.random() * chars.length);
@@ -179,7 +177,6 @@
         }
         return password;
       }
-
       function showCheckboxesPopup() {
         fillCheckboxes();
         let checkboxesPopup = document.getElementById("checkboxes-popup");
@@ -212,19 +209,15 @@
           checkboxesPopup.style.display = "none";
         };
       }
-
       function fillCheckboxes() {
         document.getElementById("includeLowercase").checked = true;
         document.getElementById("includeUppercase").checked = true;
         document.getElementById("includeNumbers").checked = true;
         document.getElementById("includeSymbols").checked = true;
       }
-
       function updatePasswordLength(value) {
         document.getElementById("passwordLengthOutput").value = value;
   }
     </script>
   </body>
 </html>
-
-<!-- Adding code so I can push to master -->
