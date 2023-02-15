@@ -39,9 +39,19 @@ router.get("/", (req, res) => {
 // Create a new user
 router.post("/", (req, res) => {
   const user = req.body;
-  if (!user.password || !user.email || !user.username) {
-    return res.send({ error: "require an email and password and username" });
+  if (!user.password || !user.email || !user.username || !user.organization) {
+    return res.send({
+      error: "require an email, password, username, and password",
+    });
   }
+  userQueries.getUserWithEmail(user.email).then((result) => {
+    if (result) {
+      return res.send({
+        error: "email already registered",
+      });
+    }
+  });
+
   user.password = bcrypt.hashSync(user.password, 12);
   userQueries
     .addUser(user)
