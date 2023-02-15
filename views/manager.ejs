@@ -57,21 +57,26 @@
          <% } %>
     </section>
        <h1>PasswordKeepR</h1>
-    <form action="/manager" method="post">
-      <label>🌍 Site Name: </label>
-      <input type="text" name="siteName" placeholder="Enter Site Name">
-      <br>
-      <label>🔗 Site URL: </label>
-      <input type="text" name="siteURL" placeholder="Enter Site URL">
-      <br>
-      <label>🙂 Username: </label>
-      <input type="text" name="username" placeholder="Enter Username">
-      <br>
-      <label>🔑 Password: </label>
-      <input type="text" name="password" placeholder="Enter Password">
-      <br>
-      <button type="submit">Add Password</button>
-    </form>
+       <form action="/manager" method="post">
+        <label>🌍 Site Name: </label>
+        <input type="text" name="siteName" placeholder="Enter Site Name">
+        <br>
+        <label>🔗 Site URL: </label>
+        <input type="text" name="siteURL" placeholder="Enter Site URL">
+        <br>
+        <label>🙂 Username: </label>
+        <input type="text" name="username" placeholder="Enter Username">
+        <br>
+        <label>🔑 Password: </label>
+        <input type="text" id="password" name="password" placeholder="Enter Password">
+        <button type="button" onclick="generatePassword()">Generate Password</button>
+        <br>
+        <input type="checkbox" id="includeLowercase">Include Lower Case Letters<br>
+        <input type="checkbox" id="includeUppercase">Include Upper Case Letters<br>
+        <input type="checkbox" id="includeNumbers">Include Numbers<br>
+        <input type="checkbox" id="includeSymbols">Include Symbols<br>
+        <button type="submit">Add Password</button>
+      </form>
     <table class="first-row">
       <tr>
         <th>ID</th>
@@ -139,6 +144,29 @@
         modeSwitch.innerText = 'Dark Mode';
       }
     });
+    </script>
+    <script>
+      function generatePassword() {
+        let chars = "";
+        if (document.getElementById("includeLowercase").checked) {
+          chars += "abcdefghijklmnopqrstuvwxyz";
+        }
+        if (document.getElementById("includeUppercase").checked) {
+          chars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        }
+        if (document.getElementById("includeNumbers").checked) {
+          chars += "0123456789";
+        }
+        if (document.getElementById("includeSymbols").checked) {
+          chars += "!@#$%^&*()_+";
+        }
+        let passwordLength = prompt("How many characters would you like your password to contain?");
+        let password = "";
+        for (let i = 0; i < passwordLength; i++) {
+          password += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        document.getElementById("password").value = password;
+      }
     </script>
   </body>
 </html>
