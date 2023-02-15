@@ -67,8 +67,20 @@
         <label>🙂 Username: </label>
         <input type="text" name="username" placeholder="Enter Username">
         <br>
+        <label for="categories">Categories:</label>
+        <select name="categories" id="categories">
+          <option value="Finance">Finance</option>
+          <option value="Work">Work</option>
+          <option value="SocialMedia">SocialMedia</option>
+          <option value="News">News</option>
+          <option value="Misc">Misc</option>
+          <option value="Entertainment">Entertainment</option>
+        </select>
         <label>🔑 Password: </label>
         <input type="text" id="password" name="password" placeholder="Enter Password">
+
+
+
         <button type="button" onclick="generatePassword()">Generate Password</button>
         <br>
         <input type="checkbox" id="includeLowercase">Include Lower Case Letters<br>
