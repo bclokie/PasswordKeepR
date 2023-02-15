@@ -52,7 +52,8 @@
           <form method="POST" action="/logout"><button type="Submit">Logout</button></form>
         </div>
         <div>
-        </div>
+          <%=username%>
+       </div>
          <% } %>
     </section>
        <h1>PasswordKeepR</h1>
@@ -214,6 +215,17 @@
       function updatePasswordLength(value) {
         document.getElementById("passwordLengthOutput").value = value;
       }
+
+  const getUsername = (userID) => {
+  return db
+    .query("Select email FROM users WHERE id = $1;", [userID])
+    .then((result) => {
+      return result.row[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
     </script>
   </body>
 </html>
