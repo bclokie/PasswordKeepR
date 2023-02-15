@@ -57,7 +57,7 @@
     </section>
        <h1>PasswordKeepR</h1>
        <form action="/manager" method="post">
-        <label>🌍 Category: </label>
+        <label>🗂️ Category: </label>
         <select id="category" name="category">
           <option value="" disabled selected>Select a category from the drop down</option>
           <option value="Finance">Finance</option>
@@ -151,8 +151,6 @@
           alert("Password copied to clipboard!");
         }
       )}
-    </script>
-    <script>
       let modeSwitch = document.getElementById('mode-switch');
       modeSwitch.addEventListener('click', function() {
         document.body.classList.toggle('dark-mode');
@@ -162,8 +160,6 @@
         modeSwitch.innerText = 'Dark Mode';
       }
     });
-    </script>
-    <script>
       function generatePassword(length, includeLowercase, includeUppercase, includeNumbers, includeSymbols) {
         let chars = "";
         if (includeLowercase) chars += "abcdefghijklmnopqrstuvwxyz";
@@ -217,7 +213,7 @@
       }
       function updatePasswordLength(value) {
         document.getElementById("passwordLengthOutput").value = value;
-  }
+      }
     </script>
   </body>
 </html>
