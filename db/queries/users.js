@@ -8,16 +8,16 @@ const getUsers = () => {
 
 const getPasswords = () => {
   return db.query("SELECT * FROM passwords;").then((data) => {
-    console.log(data.rows);
+    // console.log(data.rows);
     return data.rows;
   });
 };
 
 const getUserPasswords = (userId) => {
   return db
-    .query("Select * FROM passwords WHERE owner_id = $1;", [userId])
+    .query("Select * FROM passwords WHERE owner_id = $1 ORDER BY id;", [userId])
     .then((result) => {
-      console.log("####", result.rows);
+      // console.log("####", result.rows);
       return result.rows;
     })
     .catch((err) => {
@@ -37,8 +37,23 @@ const addUser = function (user) {
       [user.username, user.email, user.password]
     )
     .then((result) => {
-      console.log(result.rows[0]);
+      // console.log(result.rows[0]);
       return result.rows[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
+const editPassword = function (password, passwordID) {
+  return db
+    .query(
+      "UPDATE passwords SET  site_password = $1 WHERE id = $2 RETURNING *",
+      [password, passwordID]
+    )
+    .then((result) => {
+      console.log(result.rows);
+      return result.rows;
     })
     .catch((err) => {
       console.log(err.message);
@@ -54,7 +69,7 @@ const getUserWithEmail = function (email) {
   return db
     .query("SELECT * FROM users WHERE email = $1", [email])
     .then((result) => {
-      console.log(result.rows[0]);
+      // console.log(result.rows[0]);
       return result.rows[0];
     })
     .catch((err) => {
@@ -84,7 +99,7 @@ const addPassword = function (password) {
       ]
     )
     .then((result) => {
-      console.log("##!", result.rows[0]);
+      // console.log("##!", result.rows[0]);
       return result.rows[0];
     })
     .catch((err) => {
@@ -107,4 +122,5 @@ module.exports = {
   addPassword,
   getPasswords,
   getUserPasswords,
+  editPassword,
 };
