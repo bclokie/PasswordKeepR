@@ -76,10 +76,7 @@ input {
   border: 1px solid rgba(0,0,0,0.3);
   border-radius: 4px;
 }
-.button {
-  display: flex;
-  justify-content: center;
-}
+
 #organization {
   display: block;
   width: 100%;
@@ -90,4 +87,19 @@ input {
   color: #fff;
   border: 1px solid rgba(0,0,0,0.3);
   border-radius: 4px;
+}
+
+#login-button{
+  position:absolute;
+  right: 0;
+  width: 120px;
+  height: 40px;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px;
 }

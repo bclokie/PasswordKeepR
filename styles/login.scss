@@ -81,5 +81,19 @@ input {
   display: flex;
   justify-content: center;
 }
+#register-button{
+  position:absolute;
+  right: 0;
+  width: 120px;
+  height: 40px;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px;
+}
 
 

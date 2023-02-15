@@ -3,8 +3,7 @@ DROP TABLE IF EXISTS organizations CASCADE;
 
 CREATE TABLE organizations (
   id SERIAL PRIMARY KEY,
-  user_id INTEGER NOT NULL,
-  FOREIGN KEY(user_id) REFERENCES users(id),
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   LighthouseLabs VARCHAR(255) NOT NULL,
   Google VARCHAR(255) NOT NULL,
   Facebook VARCHAR(255) NOT NULL,
