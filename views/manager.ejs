@@ -2,6 +2,8 @@
 <html>
   <head>
     <link rel="stylesheet" href="/styles/manager.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" >
+
     <title>PasswordKeepR</title>
     <style>
       body {
@@ -36,11 +38,32 @@
       }
     </style>
   </head>
+
+  <!--body-->
   <body>
-    <div class="mode-switch">
-      <button id="mode-switch">Dark Mode</button>
+
+    <!--header-->
+  <header>
+    <div class='navbar'>
+        <div class="logo"><h3>Group 7</h3></div>
+          <%if(!user_id){%>
+            <div>
+              <a href="/login" class="btn btn-outline-light">Login</a>
+              <a href="/register" class="btn btn-outline-light">Register</a>
+            </div>
+          <% } else{ %>
+            <form method="POST" action="/logout" class="d-flex nav-item" role="search">
+            <button class="btn btn-outline-light" type="submit">Logout</button>
+              </form>
+        </div>
+            <%}%>
     </div>
-    <section class ='nav-bar'>
+
+  </header>
+
+
+<!--
+    <div class='header-btn'>
       <% if(!user_id) { %>
         <div>
       <button id="register" onclick="window.location.href='/register';">Register</button>
@@ -51,54 +74,65 @@
       <% } else{ %>
         <div>
           <form method="POST" action="/logout"><button type="Submit">Logout</button></form>
-        </div>
-        <div>
-        </div>
-         <% } %>
-    </section>
-       <h1>PasswordKeepR</h1>
-       <form action="/manager" method="post">
-        <label>🌍 Site Name: </label>
-        <input type="text" name="siteName" placeholder="Enter Site Name">
-        <br>
-        <label>🔗 Site URL: </label>
-        <input type="text" name="siteURL" placeholder="Enter Site URL">
-        <br>
-        <label>🙂 Username: </label>
-        <input type="text" name="username" placeholder="Enter Username">
-        <br>
-        <label for="categories">Categories:</label>
-        <select name="categories" id="categories">
-          <option value="Finance">Finance</option>
-          <option value="Work">Work</option>
-          <option value="SocialMedia">SocialMedia</option>
-          <option value="News">News</option>
-          <option value="Misc">Misc</option>
-          <option value="Entertainment">Entertainment</option>
-        </select>
-        <label>🔑 Password: </label>
-        <input type="text" id="password" name="password" placeholder="Enter Password">
+      </div>
+    </div>
+         <% } %> -->
+            <!--mode switch-->
+            <div class="mode-switch">
+              <button id="mode-switch">Dark Mode</button>
+            </div>
+
+  <section>
+           <!--password generator-->
+           <h1>PasswordKeepR</h1>
+           <form action="/manager" method="post">
+            <label>🌍 Site Name: </label>
+            <input type="text" name="siteName" placeholder="Enter Site Name">
+            <br>
+            <label>🔗 Site URL: </label>
+            <input type="text" name="siteURL" placeholder="Enter Site URL">
+            <br>
+            <label>🙂 Username: </label>
+            <input type="text" name="username" placeholder="Enter Username">
+            <br>
+            <label for="categories">Categories:</label>
+            <select name="categories" id="categories">
+              <option value="Finance">Finance</option>
+              <option value="Work">Work</option>
+              <option value="SocialMedia">SocialMedia</option>
+              <option value="News">News</option>
+              <option value="Misc">Misc</option>
+              <option value="Entertainment">Entertainment</option>
+            </select>
+            <label>🔑 Password: </label>
+            <input type="text" id="password" name="password" placeholder="Enter Password">
+
+     <button type="button" onclick="generatePassword()">Generate Password</button>
+     <br>
+     <input type="checkbox" id="includeLowercase">Include Lower Case Letters<br>
+     <input type="checkbox" id="includeUppercase">Include Upper Case Letters<br>
+     <input type="checkbox" id="includeNumbers">Include Numbers<br>
+     <input type="checkbox" id="includeSymbols">Include Symbols<br>
+     <button type="submit">Add Password</button>
+   </form>
+ <table class="first-row">
+   <tr>
+     <th>ID</th>
+     <th>Site Name</th>
+     <th>Site URL</th>
+     <th>Username</th>
+     <th>Password</th>
+     <th>Copy?</th>
+     <th>Edit</th>
+   </tr>
+  </section>
 
 
 
-        <button type="button" onclick="generatePassword()">Generate Password</button>
-        <br>
-        <input type="checkbox" id="includeLowercase">Include Lower Case Letters<br>
-        <input type="checkbox" id="includeUppercase">Include Upper Case Letters<br>
-        <input type="checkbox" id="includeNumbers">Include Numbers<br>
-        <input type="checkbox" id="includeSymbols">Include Symbols<br>
-        <button type="submit">Add Password</button>
-      </form>
-    <table class="first-row">
-      <tr>
-        <th>ID</th>
-        <th>Site Name</th>
-        <th>Site URL</th>
-        <th>Username</th>
-        <th>Password</th>
-        <th>Copy?</th>
-        <th>Edit</th>
-      </tr>
+
+
+
+
       <!-- This code shows the password table but gives us an error when we submit new password... -->
       <% for (let i = 0; i < passwords.length; i++) { %>
         <tr>
