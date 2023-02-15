@@ -69,13 +69,21 @@
         <br>
         <label>🔑 Password: </label>
         <input type="text" id="password" name="password" placeholder="Enter Password">
-        <button type="button" onclick="generatePassword()">Generate Password</button>
-        <br>
-        <input type="checkbox" id="includeLowercase">Include Lower Case Letters<br>
-        <input type="checkbox" id="includeUppercase">Include Upper Case Letters<br>
-        <input type="checkbox" id="includeNumbers">Include Numbers<br>
-        <input type="checkbox" id="includeSymbols">Include Symbols<br>
-        <button type="submit">Add Password</button>
+        <button type="button" onclick="showCheckboxesPopup()">Generate Password</button>
+        <div id="checkboxes-popup">
+          <div id="checkboxes-popup-content">
+            <h2>Select Password Options</h2>
+            <input type="checkbox" id="includeLowercase">Include Lower Case Letters<br>
+            <input type="checkbox" id="includeUppercase">Include Upper Case Letters<br>
+            <input type="checkbox" id="includeNumbers">Include Numbers<br>
+            <input type="checkbox" id="includeSymbols">Include Symbols<br>
+            <input type="range" id="passwordLength" name="passwordLength" min="8" max="64" value="12" oninput="passwordLengthOutput.value = passwordLength.value">
+            <output for="passwordLength" id="passwordLengthOutput">12</output>
+            <button id="checkboxes-popup-close" type="button">Close</button>
+            <button id="checkboxes-popup-use" type="button">Confirm</button>
+          </div>
+        </div>
+
       </form>
     <table class="first-row">
       <tr>
@@ -146,26 +154,47 @@
     });
     </script>
     <script>
-      function generatePassword() {
+      function generatePassword(length, includeLowercase, includeUppercase, includeNumbers, includeSymbols) {
         let chars = "";
-        if (document.getElementById("includeLowercase").checked) {
-          chars += "abcdefghijklmnopqrstuvwxyz";
-        }
-        if (document.getElementById("includeUppercase").checked) {
-          chars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        }
-        if (document.getElementById("includeNumbers").checked) {
-          chars += "0123456789";
-        }
-        if (document.getElementById("includeSymbols").checked) {
-          chars += "!@#$%^&*()_+";
-        }
-        let passwordLength = prompt("How many characters would you like your password to contain?");
+        if (includeLowercase) chars += "abcdefghijklmnopqrstuvwxyz";
+        if (includeUppercase) chars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        if (includeNumbers) chars += "0123456789";
+        if (includeSymbols) chars += "!@#$%^&*()_-+={}[]|\\:;\"'<>,.?/";
+
         let password = "";
-        for (let i = 0; i < passwordLength; i++) {
-          password += chars.charAt(Math.floor(Math.random() * chars.length));
+        for (let i = 0; i < length; i++) {
+          let randomIndex = Math.floor(Math.random() * chars.length);
+          password += chars[randomIndex];
         }
-        document.getElementById("password").value = password;
+        return password;
+      }
+
+      function showCheckboxesPopup() {
+        let checkboxesPopup = document.getElementById("checkboxes-popup");
+        let checkboxesPopupClose = document.getElementById("checkboxes-popup-close");
+        let checkboxesPopupUse = document.getElementById("checkboxes-popup-use");
+        let passwordInput = document.getElementById("password");
+        let passwordLength = document.getElementById("passwordLength").value;
+        checkboxesPopup.style.display = "block";
+        document.getElementById("passwordLengthOutput").value = passwordLength;
+        checkboxesPopupClose.onclick = function() {
+          checkboxesPopup.style.display = "none";
+        };
+        checkboxesPopupUse.onclick = function() {
+          let includeLowercase = document.getElementById("includeLowercase").checked;
+          let includeUppercase = document.getElementById("includeUppercase").checked;
+          let includeNumbers = document.getElementById("includeNumbers").checked;
+          let includeSymbols = document.getElementById("includeSymbols").checked;
+          let password = generatePassword(passwordLength, includeLowercase, includeUppercase, includeNumbers, includeSymbols);
+          passwordInput.value = password;
+          checkboxesPopup.style.display = "none";
+        };
+      }
+      function clearCheckboxes() {
+        document.getElementById("includeLowercase").checked = false;
+        document.getElementById("includeUppercase").checked = false;
+        document.getElementById("includeNumbers").checked = false;
+        document.getElementById("includeSymbols").checked = false;
       }
     </script>
   </body>
