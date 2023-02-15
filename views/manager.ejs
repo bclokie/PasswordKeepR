@@ -58,6 +58,17 @@
     </section>
        <h1>PasswordKeepR</h1>
        <form action="/manager" method="post">
+        <label>🌍 Category: </label>
+        <select id="category" name="category">
+          <option value="" disabled selected>Select a category from the drop down</option>
+          <option value="Finance">Finance</option>
+          <option value="Work">Work</option>
+          <option value="Social Media">Social Media</option>
+          <option value="News">News</option>
+          <option value="Misc">Misc</option>
+          <option value="Entertainment">Entertainment</option>
+        </select>
+        <br>
         <label>🌍 Site Name: </label>
         <input type="text" name="siteName" placeholder="Enter Site Name">
         <br>
@@ -79,7 +90,7 @@
       </form>
     <table class="first-row">
       <tr>
-        <th>ID</th>
+        <th>Category</th>
         <th>Site Name</th>
         <th>Site URL</th>
         <th>Username</th>
@@ -90,7 +101,7 @@
       <!-- This code shows the password table but gives us an error when we submit new password... -->
       <% for (let i = 0; i < passwords.length; i++) { %>
         <tr>
-          <td id="<%= passwords[i].id %>"><%= passwords[i].id %></td>
+          <td><%= passwords[i].category %></td>
           <td><%= passwords[i].site_name %></td>
           <td><%= passwords[i].site_url %></td>
           <td><%= passwords[i].site_username %></td>

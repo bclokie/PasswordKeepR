@@ -104,8 +104,9 @@ const getUserWithEmail = function (email) {
 const addPassword = function (password) {
   return db
     .query(
-      "INSERT INTO passwords (owner_id, site_name, site_url, site_username, site_password) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+      "INSERT INTO passwords (category, owner_id, site_name, site_url, site_username, site_password) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
       [
+        password.category,
         password.owner_id,
         password.siteName,
         password.siteURL,
