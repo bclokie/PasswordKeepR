@@ -77,13 +77,13 @@
             <input type="checkbox" id="includeUppercase">Include Upper Case Letters<br>
             <input type="checkbox" id="includeNumbers">Include Numbers<br>
             <input type="checkbox" id="includeSymbols">Include Symbols<br>
-            <input type="range" id="passwordLength" name="passwordLength" min="8" max="64" value="12" oninput="passwordLengthOutput.value = passwordLength.value">
+            <input type="range" id="passwordLength" name="passwordLength" min="8" max="64" value="12" oninput="updatePasswordLength(this.value)">
             <output for="passwordLength" id="passwordLengthOutput">12</output>
             <button id="checkboxes-popup-close" type="button">Close</button>
             <button id="checkboxes-popup-use" type="button">Confirm</button>
           </div>
         </div>
-
+        <button type="submit">Add Password</button>
       </form>
     <table class="first-row">
       <tr>
@@ -189,12 +189,15 @@
           passwordInput.value = password;
           checkboxesPopup.style.display = "none";
         };
+      function fillCheckboxes() {
+        document.getElementById("includeLowercase").checked = true;
+        document.getElementById("includeUppercase").checked = true;
+        document.getElementById("includeNumbers").checked = true;
+        document.getElementById("includeSymbols").checked = true;
       }
-      function clearCheckboxes() {
-        document.getElementById("includeLowercase").checked = false;
-        document.getElementById("includeUppercase").checked = false;
-        document.getElementById("includeNumbers").checked = false;
-        document.getElementById("includeSymbols").checked = false;
+    }
+      function updatePasswordLength(value) {
+        document.getElementById("passwordLengthOutput").value = value;
       }
     </script>
   </body>
