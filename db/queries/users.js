@@ -45,6 +45,21 @@ const addUser = function (user) {
     });
 };
 
+const addOrganization = function (organizationName, userID) {
+  return db
+    .query(
+      "INSERT INTO organizations (name, user_id) VALUES ($1, $2) RETURNING *",
+      [organizationName, userID]
+    )
+    .then((result) => {
+      console.log(result.rows[0]);
+      return result.rows[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
 const editPassword = function (password, passwordID) {
   return db
     .query(
@@ -89,8 +104,9 @@ const getUserWithEmail = function (email) {
 const addPassword = function (password) {
   return db
     .query(
-      "INSERT INTO passwords (owner_id, site_name, site_url, site_username, site_password) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+      "INSERT INTO passwords (category, owner_id, site_name, site_url, site_username, site_password) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
       [
+        password.category,
         password.owner_id,
         password.siteName,
         password.siteURL,
@@ -123,4 +139,5 @@ module.exports = {
   getPasswords,
   getUserPasswords,
   editPassword,
+  addOrganization,
 };
