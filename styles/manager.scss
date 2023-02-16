@@ -241,7 +241,7 @@ header {
   height: 40px;
   background-color: #8daae4;
   color: black;
-  border: none;
+  border-color: black;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
@@ -250,6 +250,8 @@ header {
   &.dark-mode {
     background-color: rebeccapurple;
     color: white;
+    border-color: white;
+    border-radius: 5px;
   }
 }
 #annoying-button {
