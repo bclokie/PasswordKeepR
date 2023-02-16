@@ -42,14 +42,14 @@
     <section class ='nav-bar'>
       <% if(!user_id) { %>
         <div>
-      <button id="register" onclick="window.location.href='/register';">Register</button>
+      <button class="login-register" onclick="window.location.href='/register';">Register</button>
       </div>
       <div>
-        <button id="login" onclick="window.location.href='/login';">Login</button>
+        <button class="login-register" onclick="window.location.href='/login';">Login</button>
       </div>
       <% } else{ %>
         <div>
-          <form method="POST" action="/logout"><button type="Submit">Logout</button></form>
+          <form method="POST" action="/logout"><button class="login-register" type="Submit">Logout</button></form>
         </div>
         <div>
           <%=username%>
@@ -95,7 +95,11 @@
             <button id="checkboxes-popup-use" type="button">Confirm</button>
           </div>
         </div>
-        <button type="submit">Add Password</button>
+        <% if(!user_id) { %>
+          <p>Please login or register to use Password Keepr</p>
+        <% } else{ %>
+        <button type="submit" class="login-register">Add Password</button>
+        <% } %>
       </form>
     <table>
       <tr>
@@ -126,7 +130,7 @@
             <form action="/edit" method="POST">
               <input type="hidden" value="<%= passwords[i].id %>" name="password_Id">
               <input type="password" name="password">
-              <button type="submit" class="btn btn-primary">Edit!</button>
+              <button type="submit" class="edit">Edit!</button>
             </form>
           </td>
         </tr>
