@@ -4,6 +4,7 @@ h1 {
 }
 
 #mode-switch {
+  cursor: pointer;
   height: 40px;
   width: 120px;
   font-size: 18px;
@@ -15,6 +16,7 @@ h1 {
 }
 
 .loginbutton {
+  cursor: pointer;
   height: 40px;
   width: 120px;
   font-size: 18px;
@@ -26,6 +28,7 @@ h1 {
 }
 
 .logoutbutton {
+  cursor: pointer;
   height: 40px;
   width: 120px;
   font-size: 18px;
@@ -37,6 +40,7 @@ h1 {
 }
 
 .registerbutton {
+  cursor: pointer;
   height: 40px;
   width: 120px;
   font-size: 18px;
@@ -47,9 +51,6 @@ h1 {
   }
 }
 
-.mode-switch {
-  margin-right:40px;
-}
 .nav-bar {
   position: absolute;
   top: 40px;
@@ -195,7 +196,7 @@ form {
 header {
   position: relative;
   padding: 0 2rem;
-  background-color: #9cadce;
+  background-color: #8daae4;
   &.dark-mode {
     background-color: rebeccapurple
   }
@@ -226,6 +227,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 1%;
 }
 
 .add-password {
@@ -235,25 +237,31 @@ header {
   // margin-left: 46.5%;
   // margin-top: 1%;
   // margin-bottom: 1%;
-  width: 120px;
+  width: 160px;
   height: 40px;
-  background-color: #2196f3;
-  color: white;
+  background-color: #8daae4;
+  color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
+  margin-bottom: 1%;
+  &.dark-mode {
+    background-color: rebeccapurple;
+    color: white;
+  }
 }
 #annoying-button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 1%;
 }
 
 #category {
   height: 40px;
-  width: 21%;
+  width: 22%;
 }
 
 #input {
@@ -265,16 +273,10 @@ header {
 }
 
 .passwordbutton {
-  width: 120px;
+  width: 160px;
   height: 40px;
-  background-color: #2196f3;
-  color: white;
-  border: none;
-  border-radius: 5px;
+  margin-bottom: 1%;
   cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  margin: 10px;
 }
 
 // .passwordbutton{
