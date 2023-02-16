@@ -78,8 +78,18 @@ const editPassword = function (password, passwordID) {
       [password, passwordID]
     )
     .then((result) => {
-      console.log(result.rows);
       return result.rows;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
+const deletePassword = function (passwordID) {
+  return db
+    .query("DELETE FROM passwords WHERE id = $1 RETURNING *", [passwordID])
+    .then((result) => {
+      return result.row[0];
     })
     .catch((err) => {
       console.log(err.message);
@@ -152,4 +162,5 @@ module.exports = {
   editPassword,
   addOrganization,
   getUsername,
+  deletePassword,
 };

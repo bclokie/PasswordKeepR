@@ -49,16 +49,12 @@ app.use(
 // Note: Feel free to replace the example routes below with your own
 
 //require routers
-const indexRouter = require("./routes/index");
 const registerRoutes = require("./routes/register");
 const loginRoutes = require("./routes/login");
 const logoutRoute = require("./routes/logout");
 const editRoute = require("./routes/edit");
-const createPasswordRouter = require("./routes/password_gen");
-const editPasswordRouter = require("./routes/editPassword");
-const deletePasswordRouter = require("./routes/deletePassword");
-const userRouter = require("./routes/users");
 const managerRoute = require("./routes/manager");
+const deletePasswordRoute = require("./routes/deletePassword");
 app.use(function (req, res, next) {
   res.locals.user_id = req.session.user_id;
   res.locals.username = req.session.username;
@@ -74,6 +70,7 @@ app.use("/register", registerRoutes);
 app.use("/logout", logoutRoute);
 app.use("/manager", managerRoute);
 app.use("/edit", editRoute);
+app.use("/deletePassword", deletePasswordRoute);
 // app.use("/", loginRouter);
 // app.use('/login', loginRouter);
 // app.use('/logout', logoutRoute);

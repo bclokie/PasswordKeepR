@@ -68,7 +68,11 @@
             </div>
           </div>
         </div>
-        <button type="submit">Add Password</button>
+        <% if(!user_id) { %>
+          <p>Please login or register to use Password Keepr</p>
+        <% } else{ %>
+        <button type="submit" class="login-register">Add Password</button>
+        <% } %>
       </form>
     <table>
       <tr>
@@ -79,6 +83,7 @@
         <th class="first-row">Password</th>
         <th class="first-row">Copy?</th>
         <th class="first-row">Edit</th>
+        <th class="first-row">Delete</th>
       </tr>
       <% for (let i = 0; i < passwords.length; i++) { %>
         <tr>
@@ -99,7 +104,13 @@
             <form action="/edit" method="POST">
               <input type="hidden" value="<%= passwords[i].id %>" name="password_Id">
               <input type="password" name="password">
-              <button type="submit" class="btn btn-primary">Edit!</button>
+              <button type="submit" class="edit">Edit!</button>
+            </form>
+          </td>
+          <td>
+            <form action="/deletePassword" method="POST">
+              <input type="hidden" value="<%= passwords[i].id %>" name="password_Id">
+              <button type="submit" onclick='return confirmSubmit()' class="delete">Delete Password</button>
             </form>
           </td>
         </tr>
@@ -189,16 +200,16 @@
         document.getElementById("passwordLengthOutput").value = value;
       }
 
-  const getUsername = (userID) => {
-  return db
-    .query("Select email FROM users WHERE id = $1;", [userID])
-    .then((result) => {
-      return result.row[0];
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
-};
+      function confirmSubmit() {
+      let agree = confirm("Are you sure you wish to delete this password?");
+      if (agree) {
+        return true;
+      }
+      else {
+        return false;
+      }
+      }
     </script>
   </body>
 </html>
+
