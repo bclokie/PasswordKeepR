@@ -78,7 +78,7 @@ body {
 .main-container {
   //background-color: lightgray;
   padding: 20px;
-  border: 1px solid darkgray;
+  border: 3px solid darkgray;
   border-radius: 15px;
   margin-top: 1%;
   background-color: rgb(230, 229, 229);
@@ -88,7 +88,7 @@ body {
   &.dark-mode {
   background-color: rgb(72, 71, 71);
   color: white;
-  border: 1px solid lightgray
+  border: 3px solid lightgray
   }
 
 }
@@ -100,7 +100,7 @@ table {
   th, td {
     border: 1px solid #ddd;
     padding: 8px;
-    text-align: left;
+    text-align: center;
   }
 
   th {
@@ -228,7 +228,7 @@ header {
   justify-content: center;
 }
 
-.llogin-register {
+.add-password {
   display: flex;
   align-items: center;
   justify-content: center;
