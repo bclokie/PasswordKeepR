@@ -11,7 +11,6 @@
         background-color: #f2f2f2;
         color: #333;
       }
-      /* Add styles for dark mode */
       .dark-mode body {
         background-color: #333;
         color: #f2f2f2;
@@ -65,21 +64,17 @@
     <div class='header-btn'>
       <% if(!user_id) { %>
         <div>
-      <button id="register" onclick="window.location.href='/register';">Register</button>
+      <button class="login-register" onclick="window.location.href='/register';">Register</button>
       </div>
       <div>
-        <button id="login" onclick="window.location.href='/login';">Login</button>
+        <button class="login-register" onclick="window.location.href='/login';">Login</button>
       </div>
       <% } else{ %>
         <div>
-          <form method="POST" action="/logout"><button type="Submit">Logout</button></form>
-      </div>
-    </div>
-         <% } %> -->
-            <!--mode switch-->
-            <div class="mode-switch">
-              <button id="mode-switch">Dark Mode</button>
-              <%=username%>
+          <form method="POST" action="/logout"><button class="login-register" type="Submit">Logout</button></form>
+        </div>
+        <div>
+          <%=username%>
        </div>
 
   <section>
@@ -133,26 +128,18 @@
             <button id="checkboxes-popup-use" type="button">Confirm</button>
           </div>
         </div>
-     <button type="submit">Add Password</button>
-   </form>
- <table>
-   <tr>
-     <th class="first-row">Category</th>
-     <th class="first-row">Site Name</th>
-     <th class="first-row">Site URL</th>
-     <th class="first-row">Username</th>
-     <th class="first-row">Password</th>
-     <th class="first-row">Copy?</th>
-     <th class="first-row">Edit</th>
-   </tr>
-  </section>
-
-
-
-
-
-
-
+        <button type="submit">Add Password</button>
+      </form>
+    <table>
+      <tr>
+        <th class="first-row">Category</th>
+        <th class="first-row">Site Name</th>
+        <th class="first-row">Site URL</th>
+        <th class="first-row">Username</th>
+        <th class="first-row">Password</th>
+        <th class="first-row">Copy?</th>
+        <th class="first-row">Edit</th>
+      </tr>
       <% for (let i = 0; i < passwords.length; i++) { %>
         <tr>
           <td><%= passwords[i].category %></td>
@@ -172,7 +159,7 @@
             <form action="/edit" method="POST">
               <input type="hidden" value="<%= passwords[i].id %>" name="password_Id">
               <input type="password" name="password">
-              <button type="submit" class="btn btn-primary">Edit!</button>
+              <button type="submit" class="edit">Edit!</button>
             </form>
           </td>
         </tr>
@@ -261,17 +248,17 @@
       function updatePasswordLength(value) {
         document.getElementById("passwordLengthOutput").value = value;
       }
-
-  const getUsername = (userID) => {
-  return db
-    .query("Select email FROM users WHERE id = $1;", [userID])
-    .then((result) => {
-      return result.row[0];
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
-};
+      const getUsername = (userID) => {
+      return db
+        .query("Select email FROM users WHERE id = $1;", [userID])
+        .then((result) => {
+          return result.row[0];
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+      };
     </script>
   </body>
 </html>
+

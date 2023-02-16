@@ -44,7 +44,7 @@ router.post("/", (req, res) => {
   console.log(user);
   if (!user.password || !user.email || !user.username || !user.organization) {
     return res.send({
-      error: "require an email, password, username, and password",
+      error: "require an email, password, username, and organization",
     });
   }
   userQueries.getUserWithEmail(user.email).then((result) => {
