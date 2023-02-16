@@ -32,6 +32,7 @@
           <label>🗂️ Category: </label>
           <select id="category" name="category">
             <option value="" disabled selected>Select a category from the drop down</option>
+            <option value=""></option>
             <option value="Finance">Finance</option>
             <option value="Work">Work</option>
             <option value="Social Media">Social Media</option>
@@ -66,9 +67,9 @@
               <button id="checkboxes-popup-use" type="button">Confirm</button>
             </div>
           </div>
-        </div class="lrlr">
+        </div>
         <% if(!user_id) { %>
-          <p>Please login or register to use Password Keepr</p>
+          <p class="lrlr">Please login or register to use PasswordKeepr</p>
         <% } else{ %>
         <button type="submit" class="llogin-register">Add Password</button>
         <% } %>
