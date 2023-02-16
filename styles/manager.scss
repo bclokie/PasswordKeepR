@@ -237,7 +237,7 @@ header {
 }
 
 #category {
-  height: 50px;
+  height: 40px;
   width: 310px;
 }
 
@@ -247,4 +247,8 @@ header {
   justify-content: center;
   height: 20px;
   width: 310px;
+}
+
+.passwordbutton {
+  margin-bottom: 1em;
 }

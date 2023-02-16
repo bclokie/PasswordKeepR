@@ -29,18 +29,6 @@
   <body>
       <div class="main-container">
         <form action="/manager" method="post">
-          <label>🗂️ Category: </label>
-          <select id="category" name="category">
-            <option value="" disabled selected>Select a category from the drop down</option>
-            <option value=""></option>
-            <option value="Finance">Finance</option>
-            <option value="Work">Work</option>
-            <option value="Social Media">Social Media</option>
-            <option value="News">News</option>
-            <option value="Misc">Misc</option>
-            <option value="Entertainment">Entertainment</option>
-          </select>
-          <br>
           <label id="input">🌍 Site Name: </label>
           <input type="text" name="siteName" placeholder="Enter Site Name">
           <br>
@@ -52,7 +40,7 @@
           <br>
           <label id="input">🔑 Password: </label>
           <input type="text" id="password" name="password" placeholder="Enter Password">
-          <button type="button" onclick="showCheckboxesPopup()">Generate Password</button>
+          <button type="button" class="passwordbutton" onclick="showCheckboxesPopup()">Generate Password</button>
           <div id="checkboxes-popup">
             <div id="checkboxes-popup-content">
               <h2>Select Password Options</h2>
@@ -67,6 +55,17 @@
               <button id="checkboxes-popup-use" type="button">Confirm</button>
             </div>
           </div>
+          <label>🗂️ Category: </label>
+          <select id="category" name="category">
+            <option value="" disabled selected>Select a category from the drop down</option>
+            <option value=""></option>
+            <option value="Finance">Finance</option>
+            <option value="Work">Work</option>
+            <option value="Social Media">Social Media</option>
+            <option value="News">News</option>
+            <option value="Misc">Misc</option>
+            <option value="Entertainment">Entertainment</option>
+          </select>
         </div>
         <% if(!user_id) { %>
           <p class="lrlr">Please login or register to use PasswordKeepr</p>
