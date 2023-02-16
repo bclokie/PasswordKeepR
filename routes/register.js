@@ -40,6 +40,7 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   const user = req.body;
   const organization = req.body.organization;
+  const username = req.body.username;
   console.log(user);
   if (!user.password || !user.email || !user.username || !user.organization) {
     return res.send({
@@ -63,6 +64,8 @@ router.post("/", (req, res) => {
         return;
       }
       req.session.user_id = user.id;
+      req.session.username = user.username;
+      console.log(req.session.username);
       userQueries
         .addOrganization(organization, user.id)
         .then((result) => {

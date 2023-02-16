@@ -38,6 +38,7 @@ router.post("/", (req, res) => {
         return res.status(403).send("Bad password");
       }
       req.session.user_id = user.id;
+      req.session.username = user.username;
       return res.redirect("manager");
     })
     .catch((e) => res.send(e));

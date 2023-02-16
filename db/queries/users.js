@@ -13,6 +13,17 @@ const getPasswords = () => {
   });
 };
 
+const getUsername = (userID) => {
+  return db
+    .query("Select username FROM users WHERE id = $1;", [userID])
+    .then((result) => {
+      return result.row[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
 const getUserPasswords = (userId) => {
   return db
     .query("Select * FROM passwords WHERE owner_id = $1 ORDER BY id;", [userId])
@@ -140,4 +151,5 @@ module.exports = {
   getUserPasswords,
   editPassword,
   addOrganization,
+  getUsername,
 };
