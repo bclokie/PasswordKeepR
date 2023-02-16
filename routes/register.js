@@ -65,7 +65,6 @@ router.post("/", (req, res) => {
       }
       req.session.user_id = user.id;
       req.session.username = user.username;
-      console.log(req.session.username);
       userQueries
         .addOrganization(organization, user.id)
         .then((result) => {
