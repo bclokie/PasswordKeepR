@@ -9,7 +9,6 @@
         background-color: #f2f2f2;
         color: #333;
       }
-      /* Add styles for dark mode */
       .dark-mode body {
         background-color: #333;
         color: #f2f2f2;
@@ -219,17 +218,16 @@
       function updatePasswordLength(value) {
         document.getElementById("passwordLengthOutput").value = value;
       }
-
-  const getUsername = (userID) => {
-  return db
-    .query("Select email FROM users WHERE id = $1;", [userID])
-    .then((result) => {
-      return result.row[0];
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
-};
+      const getUsername = (userID) => {
+      return db
+        .query("Select email FROM users WHERE id = $1;", [userID])
+        .then((result) => {
+          return result.row[0];
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+      };
     </script>
   </body>
 </html>
