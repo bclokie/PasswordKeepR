@@ -3,7 +3,7 @@ h1 {
 }
 
 #mode-switch {
-  height: 80px;
+  height: 40px;
   width: 120px;
   font-size: 18px;
   padding: 10px;
@@ -13,7 +13,27 @@ h1 {
   }
 }
 
+.mode-switch {
+  position: absolute;
+  margin: 1em;
+}
+.nav-bar {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+}
+#register {
+  margin: 1em;
+}
+#login {
+  margin: 1em;
+}
+#logout {
+  margin: 1em;
+}
+
 body {
+  font-family: Arial, sans-serif;
   background-color: #f5f5f5;
   color: #333;
 
@@ -21,6 +41,27 @@ body {
   background-color: #333;
   color: #f5f5f5;
   }
+}
+
+.nav-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-bottom: 120px;
+}
+
+.main-container {
+  background-color: lightgray;
+  padding: 20px;
+  border: 1px solid skyblue;
+  border-radius: 5px;
+  margin-top: 120px;
+
+  &.dark-mode {
+    background-color: black;
+    color: #f5f5f5;
+    }
 }
 
 table {

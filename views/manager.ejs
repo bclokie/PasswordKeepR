@@ -3,96 +3,69 @@
   <head>
     <link rel="stylesheet" href="/styles/manager.css">
     <title>PasswordKeepR</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f2f2f2;
-        color: #333;
-      }
-      /* Add styles for dark mode */
-      .dark-mode body {
-        background-color: #333;
-        color: #f2f2f2;
-      }
-      .mode-switch {
-        position: absolute;
-        top: 40px;
-        left: 40px;
-      }
-         .nav-bar {
-        position: absolute;
-        top: 40px;
-        right: 40px;
-      }
-      #register {
-        margin: 1em;
-      }
-      #login {
-        margin: 1em;
-      }
-      #logout {
-        margin: 1em;
-      }
-    </style>
   </head>
   <body>
-    <div class="mode-switch">
-      <button id="mode-switch">Dark Mode</button>
-    </div>
-    <section class ='nav-bar'>
-      <% if(!user_id) { %>
-        <div>
-      <button id="register" onclick="window.location.href='/register';">Register</button>
+    <div class="nav-container">
+      <div class="mode-switch">
+        <button id="mode-switch">Dark Mode</button>
       </div>
-      <div>
-        <button id="login" onclick="window.location.href='/login';">Login</button>
-      </div>
-      <% } else{ %>
-        <div>
-          <form method="POST" action="/logout"><button type="Submit">Logout</button></form>
+      <h1>PasswordKeepR</h1>
+      <section class ='nav-bar'>
+        <% if(!user_id) { %>
+          <div>
+        <button id="register" onclick="window.location.href='/register';">Register</button>
         </div>
         <div>
-          <%=username%>
-       </div>
-         <% } %>
-    </section>
-       <h1>PasswordKeepR</h1>
-       <form action="/manager" method="post">
-        <label>🗂️ Category: </label>
-        <select id="category" name="category">
-          <option value="" disabled selected>Select a category from the drop down</option>
-          <option value="Finance">Finance</option>
-          <option value="Work">Work</option>
-          <option value="Social Media">Social Media</option>
-          <option value="News">News</option>
-          <option value="Misc">Misc</option>
-          <option value="Entertainment">Entertainment</option>
-        </select>
-        <br>
-        <label>🌍 Site Name: </label>
-        <input type="text" name="siteName" placeholder="Enter Site Name">
-        <br>
-        <label>🔗 Site URL: </label>
-        <input type="text" name="siteURL" placeholder="Enter Site URL">
-        <br>
-        <label>🙂 Username: </label>
-        <input type="text" name="username" placeholder="Enter Username">
-        <br>
-        <label>🔑 Password: </label>
-        <input type="text" id="password" name="password" placeholder="Enter Password">
-        <button type="button" onclick="showCheckboxesPopup()">Generate Password</button>
-        <div id="checkboxes-popup">
-          <div id="checkboxes-popup-content">
-            <h2>Select Password Options</h2>
-            <input type="checkbox" id="includeLowercase">Include Lower Case Letters<br>
-            <input type="checkbox" id="includeUppercase">Include Upper Case Letters<br>
-            <input type="checkbox" id="includeNumbers">Include Numbers<br>
-            <input type="checkbox" id="includeSymbols">Include Symbols<br>
-            <label for="passwordLength">Password Length:</label>
-            <input type="number" id="passwordLength" name="passwordLength" min="8" max="64" value="12">
-            <button id="checkboxes-popup-close" type="button">Close</button>
-            <br>
-            <button id="checkboxes-popup-use" type="button">Confirm</button>
+          <button id="login" onclick="window.location.href='/login';">Login</button>
+        </div>
+        <% } else{ %>
+          <div>
+            <form method="POST" action="/logout"><button type="Submit">Logout</button></form>
+          </div>
+          <div>
+            <%=username%>
+        </div>
+          <% } %>
+      </section>
+    </div>
+      <div class="main-container">
+        <form action="/manager" method="post">
+          <label>🗂️ Category: </label>
+          <select id="category" name="category">
+            <option value="" disabled selected>Select a category from the drop down</option>
+            <option value="Finance">Finance</option>
+            <option value="Work">Work</option>
+            <option value="Social Media">Social Media</option>
+            <option value="News">News</option>
+            <option value="Misc">Misc</option>
+            <option value="Entertainment">Entertainment</option>
+          </select>
+          <br>
+          <label>🌍 Site Name: </label>
+          <input type="text" name="siteName" placeholder="Enter Site Name">
+          <br>
+          <label>🔗 Site URL: </label>
+          <input type="text" name="siteURL" placeholder="Enter Site URL">
+          <br>
+          <label>🙂 Username: </label>
+          <input type="text" name="username" placeholder="Enter Username">
+          <br>
+          <label>🔑 Password: </label>
+          <input type="text" id="password" name="password" placeholder="Enter Password">
+          <button type="button" onclick="showCheckboxesPopup()">Generate Password</button>
+          <div id="checkboxes-popup">
+            <div id="checkboxes-popup-content">
+              <h2>Select Password Options</h2>
+              <input type="checkbox" id="includeLowercase">Include Lower Case Letters<br>
+              <input type="checkbox" id="includeUppercase">Include Upper Case Letters<br>
+              <input type="checkbox" id="includeNumbers">Include Numbers<br>
+              <input type="checkbox" id="includeSymbols">Include Symbols<br>
+              <label for="passwordLength">Password Length:</label>
+              <input type="number" id="passwordLength" name="passwordLength" min="8" max="64" value="12">
+              <button id="checkboxes-popup-close" type="button">Close</button>
+              <br>
+              <button id="checkboxes-popup-use" type="button">Confirm</button>
+            </div>
           </div>
         </div>
         <button type="submit">Add Password</button>
