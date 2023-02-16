@@ -137,7 +137,7 @@
           <td>
             <form action="/deletePassword" method="POST">
               <input type="hidden" value="<%= passwords[i].id %>" name="password_Id">
-              <button type="submit" onclick="window.confirm('Do you really want to delete this password?')" class="delete">Delete Password</button>
+              <button type="submit" onclick='return confirmSubmit()' class="delete">Delete Password</button>
             </form>
           </td>
         </tr>
@@ -226,6 +226,18 @@
       function updatePasswordLength(value) {
         document.getElementById("passwordLengthOutput").value = value;
       }
+
+      function confirmSubmit() {
+      let agree = confirm("Are you sure you wish to delete this password?");
+      if (agree) {
+        return true;
+      }
+      else {
+        return false;
+      }
+}
+
+
     </script>
   </body>
 </html>
