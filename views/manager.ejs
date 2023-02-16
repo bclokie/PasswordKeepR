@@ -110,6 +110,7 @@
         <th class="first-row">Password</th>
         <th class="first-row">Copy?</th>
         <th class="first-row">Edit</th>
+        <th class="first-row">Delete</th>
       </tr>
       <% for (let i = 0; i < passwords.length; i++) { %>
         <tr>
@@ -131,6 +132,12 @@
               <input type="hidden" value="<%= passwords[i].id %>" name="password_Id">
               <input type="password" name="password">
               <button type="submit" class="edit">Edit!</button>
+            </form>
+          </td>
+          <td>
+            <form action="/deletePassword" method="POST">
+              <input type="hidden" value="<%= passwords[i].id %>" name="password_Id">
+              <button type="submit" onclick="window.confirm('Do you really want to delete this password?')" class="delete">Delete Password</button>
             </form>
           </td>
         </tr>
@@ -219,17 +226,6 @@
       function updatePasswordLength(value) {
         document.getElementById("passwordLengthOutput").value = value;
       }
-
-  const getUsername = (userID) => {
-  return db
-    .query("Select email FROM users WHERE id = $1;", [userID])
-    .then((result) => {
-      return result.row[0];
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
-};
     </script>
   </body>
 </html>
