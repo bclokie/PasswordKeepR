@@ -9,19 +9,19 @@
         <div class="mode-switch">
           <button id="mode-switch">Dark Mode</button>
         </div>
-        <div class="logo"><h3>Group 7</h3></div>
+        <div class="logo"><h3></h3></div>
         <h1>PasswordKeepR</h1>
         <% if(!user_id) { %>
           <div>
-        <button class="registerb" id="register" onclick="window.location.href='/register';">Register</button>
+        <button class="registerbutton" id="register" onclick="window.location.href='/register';">Register</button>
         </div>
         <div>
-          <button class="loginb" id="login" onclick="window.location.href='/login';">Login</button>
+          <button class="loginbutton" id="login" onclick="window.location.href='/login';">Login</button>
         </div>
         <% } else{ %>
           <div> Welcome <%=username%>! </div>
           <div>
-            <form method="POST" action="/logout"><button class="logoutb" type="Submit">Logout</button></form>
+            <form method="POST" action="/logout"><button class="logoutbutton" type="Submit">Logout</button></form>
           </div>
           <% } %>
       </div>
@@ -66,12 +66,13 @@
               <button id="checkboxes-popup-use" type="button">Confirm</button>
             </div>
           </div>
-        </div>
+        </div class="lrlr">
         <% if(!user_id) { %>
           <p>Please login or register to use Password Keepr</p>
         <% } else{ %>
-        <button type="submit" class="login-register">Add Password</button>
+        <button type="submit" class="llogin-register">Add Password</button>
         <% } %>
+        </div>
       </form>
     <table>
       <tr>
