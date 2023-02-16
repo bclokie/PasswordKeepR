@@ -24,7 +24,7 @@ router.post("/", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   const user = userQueries.getUserWithEmail(email);
-  console.log(user);
+  // console.log(user);
   user
     .then((user) => {
       if (!email || !password) {
@@ -38,6 +38,7 @@ router.post("/", (req, res) => {
         return res.status(403).send("Bad password");
       }
       req.session.user_id = user.id;
+      req.session.username = user.username;
       return res.redirect("manager");
     })
     .catch((e) => res.send(e));

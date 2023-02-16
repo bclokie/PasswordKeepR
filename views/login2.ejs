@@ -9,16 +9,29 @@
 </head>
 
 <body>
+  <button id="register-button" onclick="window.location.href='/register';">Register</button>
+
     <main style="margin: lem;">
-      <h3>Login</h3>
-      <form class="form-inline" action="/login" method="POST">
+      <!-- <div class="login">
+        <h1>Login</h1>
+          <form method="POST" action="/login">
+            <input type="text" name="u" placeholder="Username" required="required" />
+              <input type="password" name="p" placeholder="Password" required="required" />
+              <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+          </form>
+      </div> -->
+    <div class="login">
+      <h1>Login</h1>
+      <form action="/login" method="POST">
         <label for="email">Email:</label>
-        <input type="email" name="email">
+        <input type="email" name="email" placeholder="example@example.com">
         <label for="password">Password:</label>
-        <input type="password" name="password">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <input type="password" name="password" placeholder="password">
+        <button type="submit" class="login-button">Submit</button>
       </form>
+    </div>
     </main>
 </body>
 
 </html>
+

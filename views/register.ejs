@@ -10,12 +10,22 @@
 
 <body>
 
-  <main style="margin: lem;">
-    <h3>Register</h3>
+  <button id="login-button" onclick="window.location.href='/login';">Login</button>
+
+<main style="margin: lem;">
+  <div class="register">
+    <h1>Register</h1>
     <form class="form-inline" action="/register" method="POST">
+      <label for="username">Username:</label>
+      <input type="text" name="username">
+      <label for="email">Email:</label>
+      <input type="email" name="email">
+      <label for="password">Password:</label>
+      <input type="password" name="password">
       <label for="organization">Organization:</label>
       <select id="organization" name="organization">
-        <option value="lighthouseLabs" selected>Lighthouse Labs</option>
+        <option value="" disabled selected>Select an organization from the drop down</option>
+        <option value="lighthouseLabs">Lighthouse Labs</option>
         <option value="google">Google</option>
         <option value="facebook">Facebook</option>
         <option value="apple">Apple</option>
@@ -23,15 +33,10 @@
         <option value="github">Github</option>
         <option value="linkedIn">LinkedIn</option>
       </select>
-      <label for="username">Username:</label>
-      <input type="text" name="username">
-      <label for="email">Email:</label>
-      <input type="email" name="email">
-      <label for="password">Password:</label>
-      <input type="password" name="password">
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="register-button">Submit</button>
     </form>
-  </main>
+  </div>
+</main>
 </body>
 
 </html>

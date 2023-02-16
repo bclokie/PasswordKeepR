@@ -13,6 +13,17 @@ const getPasswords = () => {
   });
 };
 
+const getUsername = (userID) => {
+  return db
+    .query("Select username FROM users WHERE id = $1;", [userID])
+    .then((result) => {
+      return result.row[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
 const getUserPasswords = (userId) => {
   return db
     .query("Select * FROM passwords WHERE owner_id = $1 ORDER BY id;", [userId])
@@ -45,6 +56,21 @@ const addUser = function (user) {
     });
 };
 
+const addOrganization = function (organizationName, userID) {
+  return db
+    .query(
+      "INSERT INTO organizations (name, user_id) VALUES ($1, $2) RETURNING *",
+      [organizationName, userID]
+    )
+    .then((result) => {
+      console.log(result.rows[0]);
+      return result.rows[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
 const editPassword = function (password, passwordID) {
   return db
     .query(
@@ -52,8 +78,18 @@ const editPassword = function (password, passwordID) {
       [password, passwordID]
     )
     .then((result) => {
-      console.log(result.rows);
       return result.rows;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
+const deletePassword = function (passwordID) {
+  return db
+    .query("DELETE FROM passwords WHERE id = $1 RETURNING *", [passwordID])
+    .then((result) => {
+      return result.row[0];
     })
     .catch((err) => {
       console.log(err.message);
@@ -89,8 +125,9 @@ const getUserWithEmail = function (email) {
 const addPassword = function (password) {
   return db
     .query(
-      "INSERT INTO passwords (owner_id, site_name, site_url, site_username, site_password) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+      "INSERT INTO passwords (category, owner_id, site_name, site_url, site_username, site_password) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
       [
+        password.category,
         password.owner_id,
         password.siteName,
         password.siteURL,
@@ -123,4 +160,7 @@ module.exports = {
   getPasswords,
   getUserPasswords,
   editPassword,
+  addOrganization,
+  getUsername,
+  deletePassword,
 };

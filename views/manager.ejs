@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/styles/manager.css">
+    <title>PasswordKeepR</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        color: #333;
+      }
+      .dark-mode body {
+        background-color: #333;
+        color: #f2f2f2;
+      }
+      .mode-switch {
+        position: absolute;
+        top: 40px;
+        left: 40px;
+      }
+         .nav-bar {
+        position: absolute;
+        top: 40px;
+        right: 40px;
+      }
+      #register {
+        margin: 1em;
+      }
+      #login {
+        margin: 1em;
+      }
+      #logout {
+        margin: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mode-switch">
+      <button id="mode-switch">Dark Mode</button>
+    </div>
+    <section class ='nav-bar'>
+      <% if(!user_id) { %>
+        <div>
+      <button class="login-register" onclick="window.location.href='/register';">Register</button>
+      </div>
+      <div>
+        <button class="login-register" onclick="window.location.href='/login';">Login</button>
+      </div>
+      <% } else{ %>
+        <div>
+          <form method="POST" action="/logout"><button class="login-register" type="Submit">Logout</button></form>
+        </div>
+        <div>
+          <%=username%>
+       </div>
+         <% } %>
+    </section>
+       <h1>PasswordKeepR</h1>
+       <form action="/manager" method="post">
+        <label>🗂️ Category: </label>
+        <select id="category" name="category">
+          <option value="" disabled selected>Select a category from the drop down</option>
+          <option value="Finance">Finance</option>
+          <option value="Work">Work</option>
+          <option value="Social Media">Social Media</option>
+          <option value="News">News</option>
+          <option value="Misc">Misc</option>
+          <option value="Entertainment">Entertainment</option>
+        </select>
+        <br>
+        <label>🌍 Site Name: </label>
+        <input type="text" name="siteName" placeholder="Enter Site Name">
+        <br>
+        <label>🔗 Site URL: </label>
+        <input type="text" name="siteURL" placeholder="Enter Site URL">
+        <br>
+        <label>🙂 Username: </label>
+        <input type="text" name="username" placeholder="Enter Username">
+        <br>
+        <label>🔑 Password: </label>
+        <input type="text" id="password" name="password" placeholder="Enter Password">
+        <button type="button" onclick="showCheckboxesPopup()">Generate Password</button>
+        <div id="checkboxes-popup">
+          <div id="checkboxes-popup-content">
+            <h2>Select Password Options</h2>
+            <input type="checkbox" id="includeLowercase">Include Lower Case Letters<br>
+            <input type="checkbox" id="includeUppercase">Include Upper Case Letters<br>
+            <input type="checkbox" id="includeNumbers">Include Numbers<br>
+            <input type="checkbox" id="includeSymbols">Include Symbols<br>
+            <label for="passwordLength">Password Length:</label>
+            <input type="number" id="passwordLength" name="passwordLength" min="8" max="64" value="12">
+            <button id="checkboxes-popup-close" type="button">Close</button>
+            <br>
+            <button id="checkboxes-popup-use" type="button">Confirm</button>
+          </div>
+        </div>
+        <% if(!user_id) { %>
+          <p>Please login or register to use Password Keepr</p>
+        <% } else{ %>
+        <button type="submit" class="login-register">Add Password</button>
+        <% } %>
+      </form>
+    <table>
+      <tr>
+        <th class="first-row">Category</th>
+        <th class="first-row">Site Name</th>
+        <th class="first-row">Site URL</th>
+        <th class="first-row">Username</th>
+        <th class="first-row">Password</th>
+        <th class="first-row">Copy?</th>
+        <th class="first-row">Edit</th>
+        <th class="first-row">Delete</th>
+      </tr>
+      <% for (let i = 0; i < passwords.length; i++) { %>
+        <tr>
+          <td><%= passwords[i].category %></td>
+          <td><%= passwords[i].site_name %></td>
+          <td><%= passwords[i].site_url %></td>
+          <td><%= passwords[i].site_username %></td>
+          <td>
+            <button id="<%= i %>" onclick="togglePasswordVisibility(this)">Show</button>
+            <span id="password<%= i %>" style="display: none;">
+              <%= passwords[i].site_password %>
+            </span>
+          </td>
+          <td>
+            <button id="copy<%= i %>" onclick="copyPasswordToClipboard(this)">Copy!</button>
+          </td>
+          <td>
+            <form action="/edit" method="POST">
+              <input type="hidden" value="<%= passwords[i].id %>" name="password_Id">
+              <input type="password" name="password">
+              <button type="submit" class="edit">Edit!</button>
+            </form>
+          </td>
+          <td>
+            <form action="/deletePassword" method="POST">
+              <input type="hidden" value="<%= passwords[i].id %>" name="password_Id">
+              <button type="submit" onclick='return confirmSubmit()' class="delete">Delete Password</button>
+            </form>
+          </td>
+        </tr>
+      <% } %>
+    </table>
+    <script>
+      function togglePasswordVisibility(element) {
+        let passwordId = 'password' + element.id;
+        let passwordElement = document.getElementById(passwordId);
+        if (passwordElement.style.display === 'none') {
+          passwordElement.style.display = 'inline';
+          element.innerText = 'Hide';
+        } else {
+          passwordElement.style.display = 'none'
+          element.innerText = 'Show';
+        }
+      }
+      function copyPasswordToClipboard(element) {
+        let passwordId = 'password' + element.id.slice(-1);
+        let passwordElement = document.getElementById(passwordId);
+        let password = passwordElement.innerText;
+        navigator.clipboard.writeText(password).then(function() {
+          alert("Password copied to clipboard!");
+        }
+      )}
+      let modeSwitch = document.getElementById('mode-switch');
+      modeSwitch.addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+      if (document.body.classList.contains('dark-mode')) {
+        modeSwitch.innerText = 'Light Mode';
+      } else {
+        modeSwitch.innerText = 'Dark Mode';
+      }
+    });
+      function generatePassword(length, includeLowercase, includeUppercase, includeNumbers, includeSymbols) {
+        let chars = "";
+        if (includeLowercase) chars += "abcdefghijklmnopqrstuvwxyz";
+        if (includeUppercase) chars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        if (includeNumbers) chars += "0123456789";
+        if (includeSymbols) chars += "!@#$%^&*()_-+={}[]|\\:;\"'<>,.?/";
+        let password = "";
+        for (let i = 0; i < length; i++) {
+          let randomIndex = Math.floor(Math.random() * chars.length);
+          password += chars[randomIndex];
+        }
+        return password;
+      }
+      function showCheckboxesPopup() {
+        fillCheckboxes();
+        let checkboxesPopup = document.getElementById("checkboxes-popup");
+        let checkboxesPopupClose = document.getElementById("checkboxes-popup-close");
+        let checkboxesPopupUse = document.getElementById("checkboxes-popup-use");
+        let passwordInput = document.getElementById("password");
+        let passwordLengthInput = document.getElementById("passwordLength");
+        checkboxesPopup.style.display = "block";
+        checkboxesPopupClose.onclick = function() {
+          checkboxesPopup.style.display = "none";
+        };
+        checkboxesPopupUse.onclick = function() {
+          let includeLowercase = document.getElementById("includeLowercase").checked;
+          let includeUppercase = document.getElementById("includeUppercase").checked;
+          let includeNumbers = document.getElementById("includeNumbers").checked;
+          let includeSymbols = document.getElementById("includeSymbols").checked;
+          let passwordLength = passwordLengthInput.value;
+          if (passwordLength < 8) {
+            passwordLength = 8;
+            passwordLengthInput.value = 8;
+            alert("Password length must be at least 8 characters. Changing value to 8");
+          }
+          if (passwordLength > 64) {
+            passwordLength = 64;
+            passwordLengthInput.value = 64;
+            alert("Password length cannot be greater than 64 characters. Changing value to 64");
+          }
+          let password = generatePassword(passwordLength, includeLowercase, includeUppercase, includeNumbers, includeSymbols);
+          passwordInput.value = password;
+          checkboxesPopup.style.display = "none";
+        };
+      }
+      function fillCheckboxes() {
+        document.getElementById("includeLowercase").checked = true;
+        document.getElementById("includeUppercase").checked = true;
+        document.getElementById("includeNumbers").checked = true;
+        document.getElementById("includeSymbols").checked = true;
+      }
+      function updatePasswordLength(value) {
+        document.getElementById("passwordLengthOutput").value = value;
+      }
+
+      function confirmSubmit() {
+      let agree = confirm("Are you sure you wish to delete this password?");
+      if (agree) {
+        return true;
+      }
+      else {
+        return false;
+      }
+}
+
+
+    </script>
+  </body>
+</html>
+

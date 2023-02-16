@@ -10,7 +10,7 @@ h1 {
   background-color: #ccc; // default background color
   &.dark-mode {
   background-color: #444; // background color in dark mode
-}
+  }
 }
 
 body {
@@ -59,19 +59,66 @@ form {
     }
   }
 
-  button[type="submit"] {
-    width: 120px;
-    height: 40px;
-    background-color: #2196f3;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    margin: 10px;
-  }
+  // button[type="submit"] {
+  //   width: 120px;
+  //   height: 40px;
+  //   background-color: #2196f3;
+  //   color: white;
+  //   border: none;
+  //   border-radius: 5px;
+  //   cursor: pointer;
+  //   font-size: 16px;
+  //   font-weight: bold;
+  //   margin: 10px;
+  // }
 }
 
+.login-register {
+  width: 120px;
+  height: 40px;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px;
+}
 
-// Adding code to push to master
+#checkboxes-popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+#checkboxes-popup-content {
+  background-color: white;
+  border: 1px solid #888;
+  width: 300px;
+  height: 200px;
+  margin: 15% auto;
+  padding: 20px;
+  position: relative;
+}
+#checkboxes-popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.first-row {
+  color: black;
+}
+
+#checkboxes-popup {
+  color: black;
+}
+
+#category {
+  margin-bottom: 10px
+}
