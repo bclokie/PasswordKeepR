@@ -1,9 +1,10 @@
 h1 {
   text-align: center;
+  margin-left: 7%;
 }
 
 #mode-switch {
-  height: 80px;
+  height: 40px;
   width: 120px;
   font-size: 18px;
   padding: 10px;
@@ -13,7 +14,58 @@ h1 {
   }
 }
 
+.loginbutton {
+  height: 40px;
+  width: 120px;
+  font-size: 18px;
+  padding: 10px;
+  background-color: #ccc; // default background color
+  &.dark-mode {
+  background-color: #444; // background color in dark mode
+  }
+}
+
+.logoutbutton {
+  height: 40px;
+  width: 120px;
+  font-size: 18px;
+  padding: 10px;
+  background-color: #ccc; // default background color
+  &.dark-mode {
+  background-color: #444; // background color in dark mode
+  }
+}
+
+.registerbutton {
+  height: 40px;
+  width: 120px;
+  font-size: 18px;
+  padding: 10px;
+  background-color: #ccc; // default background color
+  &.dark-mode {
+  background-color: #444; // background color in dark mode
+  }
+}
+
+.mode-switch {
+  margin-right:40px;
+}
+.nav-bar {
+  position: absolute;
+  top: 40px;
+}
+#register {
+  margin: 1em;
+}
+#login {
+  margin: 1em;
+}
+#logout {
+  margin: 1em;
+}
+
 body {
+  font-family: Arial, sans-serif;
   background-color: #f5f5f5;
   color: #333;
 
@@ -21,6 +73,23 @@ body {
   background-color: #333;
   color: #f5f5f5;
   }
+}
+
+.main-container {
+  //background-color: lightgray;
+  padding: 20px;
+  border: 1px solid darkgray;
+  border-radius: 15px;
+  margin-top: 1%;
+  //margin-left: 20%;
+  //margin-right: 20%;
+
+  &.dark-mode {
+  background-color: rgb(72, 71, 71);
+  color: white;
+  border: 1px solid lightgray
+  }
+
 }
 
 table {
@@ -42,7 +111,6 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
 
   input[type="text"] {
     width: 20%;
@@ -121,4 +189,48 @@ form {
 
 #category {
   margin-bottom: 10px
+}
+
+header {
+  position: relative;
+  padding: 0 2rem;
+  background-color: #9cadce;
+  &.dark-mode {
+    background-color: rebeccapurple
+  }
+}
+
+.navbar {
+  width: 100%;
+  height: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.lrlr {
+  display: flex;
+  align-items: center;
+}
+
+.llogin-register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 46.5%;
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
