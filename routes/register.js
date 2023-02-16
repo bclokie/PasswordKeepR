@@ -39,6 +39,21 @@ router.get("/", (req, res) => {
 // Create a new user
 router.post("/", (req, res) => {
   const user = req.body;
+  const organization = req.body.organization;
+  console.log(user);
+  if (!user.password || !user.email || !user.username || !user.organization) {
+    return res.send({
+      error: "require an email, password, username, and password",
+    });
+  }
+  userQueries.getUserWithEmail(user.email).then((result) => {
+    if (result) {
+      return res.send({
+        error: "email already registered",
+      });
+    }
+  });
+
   user.password = bcrypt.hashSync(user.password, 12);
   userQueries
     .addUser(user)
@@ -48,11 +63,29 @@ router.post("/", (req, res) => {
         return;
       }
       req.session.user_id = user.id;
-      // req.session.username = username;
-      // res.locals.user_id = res.session.user_id;
+      userQueries
+        .addOrganization(organization, user.id)
+        .then((result) => {
+          if (!result) {
+            res.send({ error: "error" });
+            return;
+          }
+        })
+        .catch((e) => res.send(e));
       return res.redirect("manager");
     })
     .catch((e) => res.send(e));
+  // console.log("##helppppp", req.session.user_id);
+  // userQueries
+  //   .addOrganization(user.organization, req.session.user_id)
+  //   .then((result) => {
+  //     if (!result) {
+  //       res.send({ error: "error3" });
+  //       return;
+  //     }
+  //     return res.redirect("manager");
+  //   })
+  //   .catch((e) => res.send(e));
 });
 
 module.exports = router;

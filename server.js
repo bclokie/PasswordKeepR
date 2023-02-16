@@ -89,7 +89,7 @@ app.use("/edit", editRoute);
 //pass the routers to the Express app as middlware
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.redirect("manager");
 });
 
 // GET route

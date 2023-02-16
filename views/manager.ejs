@@ -11,7 +11,6 @@
         background-color: #f2f2f2;
         color: #333;
       }
-
       /* Add styles for dark mode */
       .dark-mode body {
         background-color: #333;
@@ -86,7 +85,18 @@
            <!--password generator-->
            <h1>PasswordKeepR</h1>
            <form action="/manager" method="post">
-            <label>🌍 Site Name: </label>
+            <label>🗂️ Category: </label>
+        <select id="category" name="category">
+          <option value="" disabled selected>Select a category from the drop down</option>
+          <option value="Finance">Finance</option>
+          <option value="Work">Work</option>
+          <option value="Social Media">Social Media</option>
+          <option value="News">News</option>
+          <option value="Misc">Misc</option>
+          <option value="Entertainment">Entertainment</option>
+        </select>
+        <br>
+        <label>🌍 Site Name: </label>
             <input type="text" name="siteName" placeholder="Enter Site Name">
             <br>
             <label>🔗 Site URL: </label>
@@ -107,23 +117,32 @@
             <label>🔑 Password: </label>
             <input type="text" id="password" name="password" placeholder="Enter Password">
 
-     <button type="button" onclick="generatePassword()">Generate Password</button>
-     <br>
-     <input type="checkbox" id="includeLowercase">Include Lower Case Letters<br>
-     <input type="checkbox" id="includeUppercase">Include Upper Case Letters<br>
-     <input type="checkbox" id="includeNumbers">Include Numbers<br>
-     <input type="checkbox" id="includeSymbols">Include Symbols<br>
+     <button type="button" onclick="showCheckboxesPopup()">Generate Password</button>
+     <div id="checkboxes-popup">
+          <div id="checkboxes-popup-content">
+            <h2>Select Password Options</h2>
+         <input type="checkbox" id="includeLowercase">Include Lower Case Letters<br>
+         <input type="checkbox" id="includeUppercase">Include Upper Case Letters<br>
+         <input type="checkbox" id="includeNumbers">Include Numbers<br>
+         <input type="checkbox" id="includeSymbols">Include Symbols<br>
+            <label for="passwordLength">Password Length:</label>
+            <input type="number" id="passwordLength" name="passwordLength" min="8" max="64" value="12">
+            <button id="checkboxes-popup-close" type="button">Close</button>
+            <br>
+            <button id="checkboxes-popup-use" type="button">Confirm</button>
+          </div>
+        </div>
      <button type="submit">Add Password</button>
    </form>
- <table class="first-row">
+ <table>
    <tr>
-     <th>ID</th>
-     <th>Site Name</th>
-     <th>Site URL</th>
-     <th>Username</th>
-     <th>Password</th>
-     <th>Copy?</th>
-     <th>Edit</th>
+     <th class="first-row">Category</th>
+     <th class="first-row">Site Name</th>
+     <th class="first-row">Site URL</th>
+     <th class="first-row">Username</th>
+     <th class="first-row">Password</th>
+     <th class="first-row">Copy?</th>
+     <th class="first-row">Edit</th>
    </tr>
   </section>
 
@@ -133,10 +152,9 @@
 
 
 
-      <!-- This code shows the password table but gives us an error when we submit new password... -->
       <% for (let i = 0; i < passwords.length; i++) { %>
         <tr>
-          <td id="<%= passwords[i].id %>"><%= passwords[i].id %></td>
+          <td><%= passwords[i].category %></td>
           <td><%= passwords[i].site_name %></td>
           <td><%= passwords[i].site_url %></td>
           <td><%= passwords[i].site_username %></td>
@@ -179,8 +197,6 @@
           alert("Password copied to clipboard!");
         }
       )}
-    </script>
-    <script>
       let modeSwitch = document.getElementById('mode-switch');
       modeSwitch.addEventListener('click', function() {
         document.body.classList.toggle('dark-mode');
@@ -190,31 +206,60 @@
         modeSwitch.innerText = 'Dark Mode';
       }
     });
-    </script>
-    <script>
-      function generatePassword() {
+      function generatePassword(length, includeLowercase, includeUppercase, includeNumbers, includeSymbols) {
         let chars = "";
-        if (document.getElementById("includeLowercase").checked) {
-          chars += "abcdefghijklmnopqrstuvwxyz";
-        }
-        if (document.getElementById("includeUppercase").checked) {
-          chars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        }
-        if (document.getElementById("includeNumbers").checked) {
-          chars += "0123456789";
-        }
-        if (document.getElementById("includeSymbols").checked) {
-          chars += "!@#$%^&*()_+";
-        }
-        let passwordLength = prompt("How many characters would you like your password to contain?");
+        if (includeLowercase) chars += "abcdefghijklmnopqrstuvwxyz";
+        if (includeUppercase) chars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        if (includeNumbers) chars += "0123456789";
+        if (includeSymbols) chars += "!@#$%^&*()_-+={}[]|\\:;\"'<>,.?/";
         let password = "";
-        for (let i = 0; i < passwordLength; i++) {
-          password += chars.charAt(Math.floor(Math.random() * chars.length));
+        for (let i = 0; i < length; i++) {
+          let randomIndex = Math.floor(Math.random() * chars.length);
+          password += chars[randomIndex];
         }
-        document.getElementById("password").value = password;
+        return password;
+      }
+      function showCheckboxesPopup() {
+        fillCheckboxes();
+        let checkboxesPopup = document.getElementById("checkboxes-popup");
+        let checkboxesPopupClose = document.getElementById("checkboxes-popup-close");
+        let checkboxesPopupUse = document.getElementById("checkboxes-popup-use");
+        let passwordInput = document.getElementById("password");
+        let passwordLengthInput = document.getElementById("passwordLength");
+        checkboxesPopup.style.display = "block";
+        checkboxesPopupClose.onclick = function() {
+          checkboxesPopup.style.display = "none";
+        };
+        checkboxesPopupUse.onclick = function() {
+          let includeLowercase = document.getElementById("includeLowercase").checked;
+          let includeUppercase = document.getElementById("includeUppercase").checked;
+          let includeNumbers = document.getElementById("includeNumbers").checked;
+          let includeSymbols = document.getElementById("includeSymbols").checked;
+          let passwordLength = passwordLengthInput.value;
+          if (passwordLength < 8) {
+            passwordLength = 8;
+            passwordLengthInput.value = 8;
+            alert("Password length must be at least 8 characters. Changing value to 8");
+          }
+          if (passwordLength > 64) {
+            passwordLength = 64;
+            passwordLengthInput.value = 64;
+            alert("Password length cannot be greater than 64 characters. Changing value to 64");
+          }
+          let password = generatePassword(passwordLength, includeLowercase, includeUppercase, includeNumbers, includeSymbols);
+          passwordInput.value = password;
+          checkboxesPopup.style.display = "none";
+        };
+      }
+      function fillCheckboxes() {
+        document.getElementById("includeLowercase").checked = true;
+        document.getElementById("includeUppercase").checked = true;
+        document.getElementById("includeNumbers").checked = true;
+        document.getElementById("includeSymbols").checked = true;
+      }
+      function updatePasswordLength(value) {
+        document.getElementById("passwordLengthOutput").value = value;
       }
     </script>
   </body>
 </html>
-
-<!-- Adding code so I can push to master -->
