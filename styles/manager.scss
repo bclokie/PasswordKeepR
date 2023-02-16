@@ -15,7 +15,7 @@ h1 {
 
 .mode-switch {
   position: absolute;
-  margin: 1em;
+  margin-right: 100px;
 }
 .nav-bar {
   position: absolute;
@@ -41,14 +41,6 @@ body {
   background-color: #333;
   color: #f5f5f5;
   }
-}
-
-.nav-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  margin-bottom: 120px;
 }
 
 .main-container {
@@ -162,4 +154,30 @@ form {
 
 #category {
   margin-bottom: 10px
+}
+
+header {
+  position: relative;
+  padding: 0 2rem;
+  background-color: #9cadce;
+}
+
+.navbar {
+  width: 100%;
+  height: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #f5f5f5;
+}
+
+.logo {
+  margin-left: 220px;
 }

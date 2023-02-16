@@ -4,30 +4,29 @@
     <link rel="stylesheet" href="/styles/manager.css">
     <title>PasswordKeepR</title>
   </head>
-  <body>
-    <div class="nav-container">
-      <div class="mode-switch">
-        <button id="mode-switch">Dark Mode</button>
-      </div>
-      <h1>PasswordKeepR</h1>
-      <section class ='nav-bar'>
+  <header>
+    <div class='navbar'>
+        <div class="mode-switch">
+          <button id="mode-switch">Dark Mode</button>
+        </div>
+        <div class="logo"><h3>Group 7</h3></div>
+        <h1>PasswordKeepR</h1>
         <% if(!user_id) { %>
           <div>
-        <button id="register" onclick="window.location.href='/register';">Register</button>
+        <button class="registerb" id="register" onclick="window.location.href='/register';">Register</button>
         </div>
         <div>
-          <button id="login" onclick="window.location.href='/login';">Login</button>
+          <button class="loginb" id="login" onclick="window.location.href='/login';">Login</button>
         </div>
         <% } else{ %>
+          <div> Welcome <%=username%>! </div>
           <div>
-            <form method="POST" action="/logout"><button type="Submit">Logout</button></form>
+            <form method="POST" action="/logout"><button class="logoutb" type="Submit">Logout</button></form>
           </div>
-          <div>
-            <%=username%>
-        </div>
           <% } %>
-      </section>
-    </div>
+      </div>
+    </header>
+  <body>
       <div class="main-container">
         <form action="/manager" method="post">
           <label>🗂️ Category: </label>
