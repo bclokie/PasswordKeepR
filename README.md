@@ -1,6 +1,6 @@
 # PasswordKeepR Project
 
-PasswordKeepR is a full stack web application built with NodeJS, ExpressJS, SCSS, and postgreSQL that allows users to generate passwords, and save passwords for different websites in one convenient place.
+PasswordKeepR is a full stack web application built with NodeJS, ExpressJS, SCSS, and postgreSQL. It allows users to generate passwords, and save passwords for different websites in one convenient place.
 
 ## Dependencies
 
