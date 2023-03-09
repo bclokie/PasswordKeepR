@@ -16,7 +16,7 @@ PasswordKeepR is a full stack web application built with NodeJS, ExpressJS, SCSS
 
 ## Getting Started
 
-- Clone the repository on your local device
+- Clone the repository on your local device.
 - Install all dependencies (using the 'npm install' command).
 - Run the web server using 'npm run local' command. The app will be served at <http://localhost:8080/>.
 - Go to <http://localhost:8080/> in your browser.
