@@ -8,6 +8,9 @@ h1 {
   height: 40px;
   width: 120px;
   font-size: 18px;
+  outline: none;
+  border: none;
+  border-radius: 6px;
   padding: 10px;
   background-color: #ccc; // default background color
   &.dark-mode {
@@ -25,6 +28,9 @@ h1 {
   &.dark-mode {
   background-color: #444; // background color in dark mode
   }
+  outline: none;
+  border: none;
+  border-radius: 6px;
 }
 
 .logoutbutton {
@@ -49,6 +55,9 @@ h1 {
   &.dark-mode {
   background-color: #444; // background color in dark mode
   }
+  outline: none;
+  border: none;
+  border-radius: 6px;
 }
 
 .nav-bar {
