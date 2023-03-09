@@ -1,6 +1,6 @@
-# Password Keepr Project
+# PasswordKeepR Project
 
-Password Keepr is a full stack web application built with Node and Express that allows users to generate passwords, and save passwords for different websites in one convenient place.
+PasswordKeepR is a full stack web application built with NodeJS, ExpressJS, SCSS, and postgreSQL that allows users to generate passwords, and save passwords for different websites in one convenient place.
 
 ## Dependencies
 
@@ -16,7 +16,7 @@ Password Keepr is a full stack web application built with Node and Express that 
 
 ## Getting Started
 
-- CLone the repository on your local device
+- Clone the repository on your local device
 - Install all dependencies (using the 'npm install' command).
 - Run the web server using 'npm run local' command. The app will be served at <http://localhost:8080/>.
 - Go to <http://localhost:8080/> in your browser.
